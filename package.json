@@ -11,7 +11,7 @@
     "reinstall": "rm -rf node_modules/ && yarn install"
   },
   "dependencies": {
-    "@pooltogether/current-pool-data": "^3.4.0",
+    "@pooltogether/current-pool-data": "^3.4.3",
     "ethers": "^5.1.2",
     "lodash.clonedeep": "^4.5.0"
   },
