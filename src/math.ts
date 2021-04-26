@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { ethers } from 'ethers'
-import { bn } from './_utils'
+import { SECONDS_PER_YEAR, SECONDS_PER_WEEK } from '@pooltogether/current-pool-data'
 
 /**
  * Need to mult & div by 100 since BigNumber doesn't support decimals
@@ -16,7 +16,7 @@ export const amountMultByUsd = (amount: ethers.BigNumber, usd: number) =>
  * @param {ethers.BigNumber[]} nums an array of scaled BigNumbers
  * @returns
  */
-export const addBigNumbers = (nums: BigNumber[]) =>
+export const addBigNumbers = (nums: BigNumber[]): ethers.BigNumber =>
   nums.reduce((total: ethers.BigNumber, bn: ethers.BigNumber) => {
     return bn.add(total)
   }, ethers.constants.Zero)
@@ -58,10 +58,12 @@ export const calculateUsersOdds = (
  * @param supplyRatePerBlockUnformatted BigNumber - Shifted 18 decimals
  * @param decimals decimals used to format the above parameters
  * @param prizePeriodRemainingBlocks ex. "23034.23"
+ * @param prizePeriodRemainingSeconds ex. "322003"
  * @param poolReserveRate ex. "0.5"
+ * @param compApy ex "2.39234 "
  * @returns BigNumber
  */
-export const calculateEstimatedPrizeWithYieldUnformatted = (
+export const calculateEstimatedCompoundPrizeWithYieldUnformatted = (
   existingPrizeUnformatted: ethers.BigNumber,
   poolDepositsTotalSupplyUnformatted: ethers.BigNumber,
   supplyRatePerBlockUnformatted: ethers.BigNumber,
@@ -76,7 +78,7 @@ export const calculateEstimatedPrizeWithYieldUnformatted = (
       : ethers.constants.Zero
 
   // Additional divison to handle decimal placements
-  const prizeYield = poolReserveRateUnformatted.isZero()
+  let prizeYield = poolReserveRateUnformatted.isZero()
     ? ethers.constants.Zero
     : poolDepositsTotalSupplyUnformatted
         .mul(supplyRatePerBlockUnformatted)
@@ -86,4 +88,28 @@ export const calculateEstimatedPrizeWithYieldUnformatted = (
         .div(ethers.utils.parseUnits('1', decimals))
 
   return prizeYield.add(existingPrizeUnformatted)
+}
+
+/**
+ * Estimates the value of the COMP that will be earned from supplying to Compound
+ * @param compApy
+ * @param poolDepositsTotalSupplyUnformatted
+ * @param prizePeriodRemainingSeconds
+ * @returns
+ */
+export const calculatedEstimatedAccruedCompValueUnformatted = (
+  compApy: string,
+  poolDepositsTotalSupplyUnformatted: ethers.BigNumber,
+  prizePeriodRemainingSeconds: string
+) => {
+  // Estimate accrued comp that will be
+  if (compApy) {
+    const compYearlyEarningsUnformatted = poolDepositsTotalSupplyUnformatted
+      .mul(Math.round(parseFloat(compApy) * 100))
+      .div(10000)
+    const compEarningsPerSecondUnformatted = compYearlyEarningsUnformatted.div(SECONDS_PER_YEAR)
+    return compEarningsPerSecondUnformatted.mul(prizePeriodRemainingSeconds)
+  } else {
+    return ethers.constants.Zero
+  }
 }
