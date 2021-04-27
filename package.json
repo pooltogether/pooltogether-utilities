@@ -3,12 +3,15 @@
   "version": "0.0.1",
   "description": "Shared utility functions across PoolTogether apps",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:pooltogether/pooltogether-utilities.git",
   "author": "PoolTogether Inc.",
   "license": "MIT",
   "scripts": {
     "start": "tsc-watch --onSuccess \"node ./dist/index.js\" ",
-    "reinstall": "rm -rf node_modules/ && yarn install"
+    "build": "tsc",
+    "reinstall": "rm -rf node_modules/ && yarn install",
+    "prepublish": "tsc"
   },
   "dependencies": {
     "@pooltogether/current-pool-data": "^3.4.3",
