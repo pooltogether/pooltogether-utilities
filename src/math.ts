@@ -93,22 +93,24 @@ export const calculateEstimatedCompoundPrizeWithYieldUnformatted = (
 /**
  * Estimates the value of the COMP that will be earned from supplying to Compound
  * @param compApy
- * @param poolDepositsTotalSupplyUnformatted
+ * @param poolDepositsTotalValueUsdScaled
  * @param prizePeriodRemainingSeconds
- * @returns
+ * @returns BigNumber
  */
-export const calculatedEstimatedAccruedCompValueUnformatted = (
+export const calculatedEstimatedAccruedCompTotalValueUsdScaled = (
   compApy: string,
-  poolDepositsTotalSupplyUnformatted: ethers.BigNumber,
+  poolDepositsTotalValueUsdScaled: BigNumber,
   prizePeriodRemainingSeconds: string
-) => {
+): BigNumber => {
   // Estimate accrued comp that will be
   if (compApy) {
-    const compYearlyEarningsUnformatted = poolDepositsTotalSupplyUnformatted
+    const compYearlyEarningsUnformatted = poolDepositsTotalValueUsdScaled
       .mul(Math.round(parseFloat(compApy) * 100))
       .div(10000)
-    const compEarningsPerSecondUnformatted = compYearlyEarningsUnformatted.div(SECONDS_PER_YEAR)
-    return compEarningsPerSecondUnformatted.mul(prizePeriodRemainingSeconds)
+    const compEarningsPerSecondUnformatted = compYearlyEarningsUnformatted
+      .mul(100)
+      .div(SECONDS_PER_YEAR)
+    return compEarningsPerSecondUnformatted.mul(prizePeriodRemainingSeconds).div(100)
   } else {
     return ethers.constants.Zero
   }

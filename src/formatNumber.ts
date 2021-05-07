@@ -1,6 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { parseUnits } from '@ethersproject/units'
-import { ethers } from 'ethers'
+import { parseUnits, formatUnits } from '@ethersproject/units'
 import { FormatNumberOptions } from './types'
 
 /**
@@ -26,6 +25,13 @@ export function stringWithPrecision(val: string, options: FormatNumberOptions = 
  */
 export const toScaledUsdBigNumber = (usd: string): BigNumber =>
   parseUnits(stringWithPrecision(usd, { precision: 2 }), 2)
+
+/**
+ * Converts a scaled USD BigNumber to a string
+ * @param {string} usdScaled a scaled BigNumber ex. ethers.BigNumber.from("10023") (Which would be $100.23)
+ * @returns a string ex. "100.23"
+ */
+export const toNonScaledUsdString = (usdScaled: BigNumber): string => formatUnits(usdScaled, 2)
 
 /**
  * Returns a formatted string for a percentage
