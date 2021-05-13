@@ -1,6 +1,7 @@
 import * as Address from './address'
 import * as FormatData from './formatData'
 import * as FormatNumber from './formatNumber'
+import * as Time from './time'
 import * as Keys from './keys'
 import * as PTMath from './math'
 
@@ -10,5 +11,6 @@ module.exports = {
   ...FormatData,
   ...FormatNumber,
   ...Keys,
-  ...PTMath
+  ...PTMath,
+  ...Time
 }
