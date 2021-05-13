@@ -643,31 +643,39 @@ const groupedOptions = {
   ]
 }
 
-const compoundYieldSourceAddresses = {
+const compoundCTokens = {
   1: [...compoundOptions[1].map((option) => option.value.toLowerCase())],
   4: [...compoundOptions[4].map((option) => option.value.toLowerCase())],
   42: [...compoundOptions[42].map((option) => option.value.toLowerCase())]
 }
 
-const aaveAsGenericYieldSourceAddresses = {
+const aaveGeneric = {
   1: [...aaveOptions[1].map((option) => option.value.toLowerCase())],
   42: [...aaveOptions[42].map((option) => option.value.toLowerCase())],
   137: [...aaveOptions[137].map((option) => option.value.toLowerCase())]
 }
 
-const rariFuseYieldSourceAddresses = {
+const rariFuseCTokens = {
   1: [...rariFuseOptions[1].map((option) => option.value.toLowerCase())]
 }
 
-const creamYieldSourceAddresses = {
+const creamCTokens = {
   1: [...creamOptions[1].map((option) => option.value.toLowerCase())],
   56: [...creamOptions[56].map((option) => option.value.toLowerCase())]
 }
 
 export const KNOWN_YIELD_SOURCE_CONTRACT_ADDRESSES = {
-  compoundYieldSourceAddresses,
-  aaveAsGenericYieldSourceAddresses,
-  rariFuseYieldSourceAddresses,
-  creamYieldSourceAddresses,
-  groupedOptions
+  compoundCTokens,
+  aaveGeneric,
+  rariFuseCTokens,
+  creamCTokens
+}
+
+export const REACT_SELECT_GROUPED_OPTIONS = groupedOptions
+
+export const YIELD_SOURCE_NAMES = {
+  aave: 'Aave',
+  compound: 'Compound',
+  rariFuse: 'Rari Fuse',
+  cream: 'CREAM'
 }

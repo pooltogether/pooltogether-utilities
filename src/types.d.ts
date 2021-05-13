@@ -5,7 +5,7 @@ export interface FormatNumberOptions {
 
 export interface KnownYieldSourceContract {
   yieldSourceName: string
-  decimals?: string
+  type?: string
 }
 
 // TODO: Type everything
