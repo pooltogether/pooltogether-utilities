@@ -1,4 +1,8 @@
-import { KNOWN_YIELD_SOURCE_CONTRACT_ADDRESSES, YIELD_SOURCE_NAMES } from './data/knownYieldSources'
+import {
+  KNOWN_YIELD_SOURCE_CONTRACT_ADDRESSES,
+  YIELD_SOURCE_NAMES,
+  OPTIONS
+} from './data/knownYieldSources'
 import { PRIZE_POOL_TYPES } from '@pooltogether/current-pool-data'
 
 import { KnownYieldSourceContract } from './types'
@@ -13,24 +17,29 @@ export const getKnownYieldSourceContract = (
   chainId: number,
   address: string
 ): KnownYieldSourceContract | undefined => {
-  const sanitizedAddress = address.toLowerCase()
   // TODO: Also use isValidAddress!
+  const sanitizedAddress = address.toLowerCase()
 
-  console.log({ sanitizedAddress })
-  const knownContract: KnownYieldSourceContract = {
+  const contract: KnownYieldSourceContract = {
     yieldSourceName: getYieldSourceName(chainId, sanitizedAddress)
   }
 
-  if (!knownContract.yieldSourceName) {
+  if (!contract.yieldSourceName) {
     return
   }
 
-  knownContract.type =
-    knownContract.yieldSourceName === YIELD_SOURCE_NAMES.aave
+  contract.type =
+    contract.yieldSourceName === YIELD_SOURCE_NAMES.aave
       ? PRIZE_POOL_TYPES.genericYield
       : PRIZE_POOL_TYPES.compound
 
-  return knownContract
+  const yieldSourceName = contract.yieldSourceName.replace(' ', '').toLowerCase()
+  console.log(yieldSourceName)
+  contract.option = OPTIONS[yieldSourceName][chainId].find(
+    (object) => object.value.toLowerCase() === sanitizedAddress
+  )
+
+  return contract
 }
 
 /**
