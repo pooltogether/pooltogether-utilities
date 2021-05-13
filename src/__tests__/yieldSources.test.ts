@@ -21,7 +21,7 @@ describe('getKnownYieldSourceContract', () => {
   it('supports any case sensitivity', () => {
     const knownContract = getKnownYieldSourceContract(
       1,
-      '0XF8445C529D363CE114148662387EBA5E62016E20'
+      '0xF8445C529D363CE114148662387EBA5E62016E20'
     )
     expect(knownContract).toEqual({
       option: {
@@ -37,7 +37,7 @@ describe('getKnownYieldSourceContract', () => {
   it('supports other networks', () => {
     const knownContract = getKnownYieldSourceContract(
       56,
-      '0XC17C8C5B8BB9456C624F8534FDE6CBDA2451488C'
+      '0xC17C8C5B8BB9456C624F8534FDE6CBDA2451488C'
     )
     expect(knownContract).toEqual({
       option: {
@@ -51,7 +51,22 @@ describe('getKnownYieldSourceContract', () => {
   })
 
   it('returns undefined if no matches', () => {
-    const knownContract = getKnownYieldSourceContract(1, '0xface')
+    const knownContract = getKnownYieldSourceContract(
+      1,
+      '0x6b175474e89094c44da98b954eedeac495271d0f'
+    )
     expect(knownContract).toEqual(undefined)
+  })
+
+  it('throws with bad params', () => {
+    expect(() => {
+      getKnownYieldSourceContract()
+    }).toThrow()
+  })
+
+  it('throws with bad eth address', () => {
+    expect(() => {
+      const knownContract = getKnownYieldSourceContract(1, '0xface')
+    }).toThrow()
   })
 })

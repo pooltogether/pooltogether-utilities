@@ -1,11 +1,12 @@
+import { PRIZE_POOL_TYPES } from '@pooltogether/current-pool-data'
+
 import {
   KNOWN_YIELD_SOURCE_CONTRACT_ADDRESSES,
   YIELD_SOURCE_NAMES,
   OPTIONS
 } from './data/knownYieldSources'
-import { PRIZE_POOL_TYPES } from '@pooltogether/current-pool-data'
-
 import { KnownYieldSourceContract } from './types'
+import { isValidAddress } from './address'
 
 /**
  * Returns info about known Yield Source contract addresses based on a provided address
@@ -17,7 +18,14 @@ export const getKnownYieldSourceContract = (
   chainId: number,
   address: string
 ): KnownYieldSourceContract | undefined => {
-  // TODO: Also use isValidAddress!
+  if (!chainId || !address) {
+    throw new Error('Must pass in both a chainId and contract address')
+  }
+
+  if (!isValidAddress(address)) {
+    throw new Error('invalid Ethereum address')
+  }
+
   const sanitizedAddress = address.toLowerCase()
 
   const contract: KnownYieldSourceContract = {
@@ -34,7 +42,6 @@ export const getKnownYieldSourceContract = (
       : PRIZE_POOL_TYPES.compound
 
   const yieldSourceName = contract.yieldSourceName.replace(' ', '').toLowerCase()
-  console.log(yieldSourceName)
   contract.option = OPTIONS[yieldSourceName][chainId].find(
     (object) => object.value.toLowerCase() === sanitizedAddress
   )
