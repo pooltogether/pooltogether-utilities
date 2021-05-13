@@ -3,6 +3,11 @@ export interface FormatNumberOptions {
   decimals?: string
 }
 
+export interface KnownYieldSourceContract {
+  yieldSourceName: string
+  decimals?: string
+}
+
 // TODO: Type everything
 // import { ethers } from "ethers";
 
