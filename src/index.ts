@@ -16,13 +16,3 @@ module.exports = {
   ...Time,
   ...YieldSources
 }
-
-console.log({
-  ...Address,
-  ...FormatData,
-  ...FormatNumber,
-  ...Keys,
-  ...PTMath,
-  ...Time,
-  ...YieldSources
-})
