@@ -1,12 +1,15 @@
 import { PRIZE_POOL_TYPES } from '@pooltogether/current-pool-data'
 
 import {
+  REACT_SELECT_GROUPED_OPTIONS,
   KNOWN_YIELD_SOURCE_CONTRACT_ADDRESSES,
   YIELD_SOURCE_NAMES,
   OPTIONS
 } from './data/knownYieldSources'
 import { KnownYieldSourceContract } from './types'
 import { isValidAddress } from './address'
+
+export const reactSelectGroupedOptions = REACT_SELECT_GROUPED_OPTIONS
 
 /**
  * Returns info about known Yield Source contract addresses based on a provided address

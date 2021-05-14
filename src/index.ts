@@ -4,6 +4,7 @@ import * as FormatNumber from './formatNumber'
 import * as Time from './time'
 import * as Keys from './keys'
 import * as PTMath from './math'
+import * as YieldSources from './yieldSources'
 
 // Export for use as a npm package
 module.exports = {
@@ -12,5 +13,16 @@ module.exports = {
   ...FormatNumber,
   ...Keys,
   ...PTMath,
-  ...Time
+  ...Time,
+  ...YieldSources
 }
+
+console.log({
+  ...Address,
+  ...FormatData,
+  ...FormatNumber,
+  ...Keys,
+  ...PTMath,
+  ...Time,
+  ...YieldSources
+})
