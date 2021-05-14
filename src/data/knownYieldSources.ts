@@ -1,4 +1,4 @@
-export const OPTIONS = {
+export const YIELD_SOURCE_OPTIONS = {
   compound: {
     1: [
       {
@@ -598,70 +598,70 @@ const groupedOptions = {
   1: [
     {
       label: 'Compound Finance - Ethereum',
-      options: OPTIONS.compound[1]
+      options: YIELD_SOURCE_OPTIONS.compound[1]
     },
     {
       label: 'Aave - Ethereum',
-      options: OPTIONS.aave[1]
+      options: YIELD_SOURCE_OPTIONS.aave[1]
     },
     {
       label: 'Rari Fuse - Ethereum',
-      options: OPTIONS.rariFuse[1]
+      options: YIELD_SOURCE_OPTIONS.rariFuse[1]
     },
     {
       label: 'CREAM - Ethereum',
-      options: OPTIONS.cream[1]
+      options: YIELD_SOURCE_OPTIONS.cream[1]
     }
   ],
   4: [
     {
       label: 'Compound Finance - Rinkeby',
-      options: OPTIONS.compound[4]
+      options: YIELD_SOURCE_OPTIONS.compound[4]
     }
   ],
   42: [
     {
       label: 'Compound Finance - Kovan',
-      options: OPTIONS.compound[42]
+      options: YIELD_SOURCE_OPTIONS.compound[42]
     },
     {
       label: 'Aave - Kovan',
-      options: OPTIONS.aave[42]
+      options: YIELD_SOURCE_OPTIONS.aave[42]
     }
   ],
   56: [
     {
       label: 'CREAM - BSC',
-      options: OPTIONS.cream[56]
+      options: YIELD_SOURCE_OPTIONS.cream[56]
     }
   ],
   137: [
     {
       label: 'Aave - Polygon',
-      options: OPTIONS.aave[137]
+      options: YIELD_SOURCE_OPTIONS.aave[137]
     }
   ]
 }
 
 const compoundCTokens = {
-  1: [...OPTIONS.compound[1].map((option) => option.value.toLowerCase())],
-  4: [...OPTIONS.compound[4].map((option) => option.value.toLowerCase())],
-  42: [...OPTIONS.compound[42].map((option) => option.value.toLowerCase())]
+  1: [...YIELD_SOURCE_OPTIONS.compound[1].map((option) => option.value.toLowerCase())],
+  4: [...YIELD_SOURCE_OPTIONS.compound[4].map((option) => option.value.toLowerCase())],
+  42: [...YIELD_SOURCE_OPTIONS.compound[42].map((option) => option.value.toLowerCase())]
 }
 
 const aaveGeneric = {
-  1: [...OPTIONS.aave[1].map((option) => option.value.toLowerCase())],
-  42: [...OPTIONS.aave[42].map((option) => option.value.toLowerCase())],
-  137: [...OPTIONS.aave[137].map((option) => option.value.toLowerCase())]
+  1: [...YIELD_SOURCE_OPTIONS.aave[1].map((option) => option.value.toLowerCase())],
+  42: [...YIELD_SOURCE_OPTIONS.aave[42].map((option) => option.value.toLowerCase())],
+  137: [...YIELD_SOURCE_OPTIONS.aave[137].map((option) => option.value.toLowerCase())]
 }
 
 const rariFuseCTokens = {
-  1: [...OPTIONS.rariFuse[1].map((option) => option.value.toLowerCase())]
+  1: [...YIELD_SOURCE_OPTIONS.rariFuse[1].map((option) => option.value.toLowerCase())]
 }
 
 const creamCTokens = {
-  1: [...OPTIONS.cream[1].map((option) => option.value.toLowerCase())],
-  56: [...OPTIONS.cream[56].map((option) => option.value.toLowerCase())]
+  1: [...YIELD_SOURCE_OPTIONS.cream[1].map((option) => option.value.toLowerCase())],
+  56: [...YIELD_SOURCE_OPTIONS.cream[56].map((option) => option.value.toLowerCase())]
 }
 
 export const KNOWN_YIELD_SOURCE_CONTRACT_ADDRESSES = {

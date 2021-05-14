@@ -1,22 +1,4 @@
-/**
- * Constant for chain ids
- */
-export const NETWORK = Object.freeze({
-  'mainnet': 1,
-  'homestead': 1,
-  'ropsten': 3,
-  'rinkeby': 4,
-  'goerli': 5,
-  'kovan': 42,
-  'bsc': 56,
-  'poa-sokol': 77,
-  'bsc-testnet': 97,
-  'poa': 99,
-  'xdai': 100,
-  'matic': 137,
-  'polygon': 137,
-  'mumbai': 80001
-})
+import { NETWORK } from './data/networks'
 
 /**
  * Returns the chain id that maps to a provided network alias
@@ -55,6 +37,12 @@ export const getNetworkNiceNameByChainId = (chainId: number): string => {
     }
     case NETWORK.matic: {
       return 'Polygon'
+    }
+    case NETWORK.bsc: {
+      return 'Binance Smart Chain'
+    }
+    case NETWORK.xdai: {
+      return 'xDai'
     }
     default: {
       const niceName = getNetworkNameAliasByChainId(chainId)
