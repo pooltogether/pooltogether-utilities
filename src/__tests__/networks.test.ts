@@ -18,7 +18,7 @@ describe('getChainIdByAlias', () => {
     expect(chainId).toEqual(137)
   })
 
-  it('returns undefiend for an unknown alias', () => {
+  it('returns undefined for an unknown alias', () => {
     let chainId = getChainIdByAlias('quack')
     expect(chainId).toEqual(undefined)
   })
