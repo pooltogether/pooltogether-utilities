@@ -1,8 +1,9 @@
 {
   "name": "@pooltogether/utilities",
-  "version": "0.0.10",
+  "version": "0.0.13",
   "description": "Shared utility functions across PoolTogether apps",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:pooltogether/pooltogether-utilities.git",
   "author": "PoolTogether Inc.",
   "license": "MIT",
@@ -13,7 +14,10 @@
     "start": "tsc-watch --onSuccess \"node ./dist/index.js\" ",
     "build": "tsc",
     "reinstall": "rm -rf node_modules/ && yarn install",
-    "prepublish": "tsc"
+    "prepublish": "tsc",
+    "test": "jest",
+    "testcov": "jest --coverage --coverageDirectory=coverage && open ./coverage/index.html",
+    "watch": "yarn run test --watch"
   },
   "dependencies": {
     "@pooltogether/current-pool-data": "^3.4.3",
@@ -21,8 +25,38 @@
     "lodash.clonedeep": "^4.5.0"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
+    "@types/jest": "^26.0.23",
     "@types/node": "^15.0.2",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.6",
     "tsc-watch": "^4.2.9",
     "typescript": "^4.2.4"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,js}"
+    ],
+    "coverageReporters": [
+      "html"
+    ],
+    "moduleNameMapper": {
+      "^src/(.*)$": "<rootDir>/src/$1",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "verbose": true,
+    "testMatch": [
+      "**/__tests__/**/?(*.)+(spec|test).+(ts|tsx)"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
   }
 }

@@ -3,6 +3,14 @@ export interface FormatNumberOptions {
   decimals?: string
 }
 
+// type GenericObject = { [key: string]: any }
+
+export interface KnownYieldSourceContract {
+  yieldSourceName: string
+  type?: string
+  option?: object
+}
+
 // TODO: Type everything
 // import { ethers } from "ethers";
 
