@@ -90,12 +90,11 @@ describe('getKnownYieldSourceContract', () => {
     expect(knownContract).toEqual(undefined)
   })
 
-  // How to get this to work where Typescript complains about missing args?
-  // it('throws with bad params', () => {
-  //   expect(() => {
-  //     getKnownYieldSourceContract()
-  //   }).toThrow()
-  // })
+  it('throws with bad params', () => {
+    expect(() => {
+      getKnownYieldSourceContract(undefined as any, undefined as any)
+    }).toThrow()
+  })
 
   it('throws with bad eth address', () => {
     expect(() => {
