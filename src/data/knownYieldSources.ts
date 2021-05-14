@@ -107,7 +107,7 @@ export const OPTIONS = {
       }
     ]
   },
-  rariFuse: {
+  rarifuse: {
     1: [
       {
         value: '0x8f0861e0e8ca979109ce462fd4a23131d56ede00',
@@ -606,7 +606,7 @@ const groupedOptions = {
     },
     {
       label: 'Rari Fuse - Ethereum',
-      options: OPTIONS.rariFuse[1]
+      options: OPTIONS.rarifuse[1]
     },
     {
       label: 'CREAM - Ethereum',
@@ -655,8 +655,8 @@ const aaveGeneric = {
   137: [...OPTIONS.aave[137].map((option) => option.value.toLowerCase())]
 }
 
-const rariFuseCTokens = {
-  1: [...OPTIONS.rariFuse[1].map((option) => option.value.toLowerCase())]
+const rariCTokens = {
+  1: [...OPTIONS.rarifuse[1].map((option) => option.value.toLowerCase())]
 }
 
 const creamCTokens = {
@@ -667,7 +667,7 @@ const creamCTokens = {
 export const KNOWN_YIELD_SOURCE_CONTRACT_ADDRESSES = {
   compoundCTokens,
   aaveGeneric,
-  rariFuseCTokens,
+  rariCTokens,
   creamCTokens
 }
 
@@ -676,6 +676,6 @@ export const REACT_SELECT_GROUPED_OPTIONS = groupedOptions
 export const YIELD_SOURCE_NAMES = {
   aave: 'Aave',
   compound: 'Compound',
-  rariFuse: 'Rari Fuse',
+  rari: 'Rari Fuse',
   cream: 'CREAM'
 }

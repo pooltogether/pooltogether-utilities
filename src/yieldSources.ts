@@ -61,7 +61,7 @@ export const getKnownYieldSourceContract = (
 export const getYieldSourceName = (chainId: number, address: string): string => {
   let yieldSourceName
 
-  const { compoundCTokens, aaveGeneric, rariFuseCTokens, creamCTokens } =
+  const { compoundCTokens, aaveGeneric, rariCTokens, creamCTokens } =
     KNOWN_YIELD_SOURCE_CONTRACT_ADDRESSES
 
   const isCompound = Boolean(compoundCTokens[chainId]?.find((value) => address === value))
@@ -74,9 +74,9 @@ export const getYieldSourceName = (chainId: number, address: string): string => 
     yieldSourceName = YIELD_SOURCE_NAMES.aave
   }
 
-  const isRariFuse = Boolean(rariFuseCTokens[chainId]?.find((value) => address === value))
-  if (isRariFuse) {
-    yieldSourceName = YIELD_SOURCE_NAMES.rariFuse
+  const isRari = Boolean(rariCTokens[chainId]?.find((value) => address === value))
+  if (isRari) {
+    yieldSourceName = YIELD_SOURCE_NAMES.rari
   }
 
   const isCream = Boolean(creamCTokens[chainId]?.find((value) => address === value))
