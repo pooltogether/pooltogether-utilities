@@ -4,7 +4,7 @@ import {
   REACT_SELECT_GROUPED_OPTIONS,
   KNOWN_YIELD_SOURCE_CONTRACT_ADDRESSES,
   YIELD_SOURCE_NAMES,
-  OPTIONS
+  YIELD_SOURCE_OPTIONS
 } from './data/knownYieldSources'
 import { KnownYieldSourceContract } from './types'
 import { isValidAddress } from './address'
@@ -45,7 +45,7 @@ export const getKnownYieldSourceContract = (
       : PRIZE_POOL_TYPES.compound
 
   const yieldSourceName = contract.yieldSourceName.replace(' ', '').toLowerCase()
-  contract.option = OPTIONS[yieldSourceName][chainId].find(
+  contract.option = YIELD_SOURCE_OPTIONS[yieldSourceName][chainId].find(
     (object) => object.value.toLowerCase() === sanitizedAddress
   )
 
