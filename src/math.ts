@@ -125,7 +125,7 @@ export const calculatedEstimatedAccruedCompTotalValueUsdScaled = (
  * @returns
  */
 export const calculateAPR = (totalDailyValue: BigNumber, totalValue: BigNumber) => {
-  if (totalValue.isZero() || totalDailyValue.isZero()) return ethers.constants.Zero
+  if (totalValue.isZero() || totalDailyValue.isZero()) return '0'
   return formatUnits(totalDailyValue.mul(10000).mul(365).div(totalValue), 2)
 }
 
