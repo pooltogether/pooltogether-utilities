@@ -1,6 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { ethers } from 'ethers'
-import { SECONDS_PER_YEAR, SECONDS_PER_WEEK } from '@pooltogether/current-pool-data'
+import { SECONDS_PER_YEAR } from '@pooltogether/current-pool-data'
+import { parseUnits, formatUnits } from '@ethersproject/units'
 
 /**
  * Need to mult & div by 100 since BigNumber doesn't support decimals
@@ -114,4 +115,38 @@ export const calculatedEstimatedAccruedCompTotalValueUsdScaled = (
   } else {
     return ethers.constants.Zero
   }
+}
+
+/**
+ * Calculates the APR of provided values
+ * Make sure the BigNumbers are formatted with the same decimals
+ * @param totalDailyValue
+ * @param totalValue
+ * @returns
+ */
+export const calculateAPR = (totalDailyValue: BigNumber, totalValue: BigNumber) => {
+  if (totalValue.isZero() || totalDailyValue.isZero()) return ethers.constants.Zero
+  return formatUnits(totalDailyValue.mul(10000).mul(365).div(totalValue), 2)
+}
+
+/**
+ * Calculates the value of an LP token for the 2 provided tokens
+ * Make sure the BigNumbers are formatted with the same decimals
+ * @param totalValueOfLPPool
+ * @param totalSupplyOfLPTokens
+ * @returns
+ */
+export const calculateLPTokenPrice = (
+  token1Amount: string,
+  token2Amount: string,
+  token1ValueUsd: number,
+  token2ValueUsd: number,
+  totalSupplyOfLPTokens: string
+) => {
+  const normalizedTotalValue = addBigNumbers([
+    amountMultByUsd(parseUnits(token1Amount, 18), token1ValueUsd),
+    amountMultByUsd(parseUnits(token2Amount, 18), token2ValueUsd)
+  ])
+  const normalizedTotalSupply = parseUnits(totalSupplyOfLPTokens, 18)
+  return normalizedTotalValue.div(normalizedTotalSupply)
 }
