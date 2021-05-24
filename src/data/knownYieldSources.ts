@@ -40,6 +40,16 @@ export const YIELD_SOURCE_OPTIONS = {
         value: '0xB3319f5D18Bc0D84dD1b4825Dcde5d5f7266d407',
         label: '$ZRX - Compound Yield',
         image: '/tokens/zrx-new-transparent.png'
+      },
+      {
+        value: '0xface851a4921ce59e912d19329929ce6da6eb0c7',
+        label: '$LINK - Compound Yield',
+        image: '/tokens/link.png'
+      },
+      {
+        value: '0x12392f67bdf24fae0af363c24ac620a2f67dad86',
+        label: '$TUSD - Compound Yield',
+        image: '/tokens/tusd.png'
       }
     ],
     4: [
