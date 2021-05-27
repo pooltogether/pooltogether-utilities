@@ -17,3 +17,19 @@ export const NETWORK = Object.freeze({
   'matic': 137,
   'mumbai': 80001
 })
+
+/**
+ * Ethereum networks
+ */
+export const ETHEREUM_NETWORKS = Object.freeze([
+  NETWORK.mainnet,
+  NETWORK.ropsten,
+  NETWORK.rinkeby,
+  NETWORK.goerli,
+  NETWORK.kovan
+])
+
+/**
+ * Polygon networks
+ */
+export const POLYGON_NETWORKS = Object.freeze([NETWORK.polygon, NETWORK.mumbai])
