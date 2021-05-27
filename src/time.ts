@@ -4,6 +4,7 @@ import {
   SECONDS_PER_DAY,
   SECONDS_PER_HOUR
 } from '@pooltogether/current-pool-data'
+import { ethers } from 'ethers'
 
 /**
  * Breaks down a number of seconds into years, weeks, days, hours, minutes, seconds
@@ -56,4 +57,28 @@ export const getTimeBreakdown = (totalSeconds: number | string) => {
     minutes,
     seconds
   }
+}
+
+/**
+ * Converts milliseconds to seconds
+ * @param milliseconds milliseconds as a number
+ * @returns
+ */
+export const msToS = (milliseconds: number) => {
+  if (!milliseconds) {
+    return 0
+  }
+  return milliseconds / 1000
+}
+
+/**
+ * Converts seconds to milliseconds
+ * @param seconds seconds as a number
+ * @returns
+ */
+export const sToMs = (seconds: number) => {
+  if (!seconds) {
+    return 0
+  }
+  return seconds * 1000
 }
