@@ -20,3 +20,21 @@ export const isValidAddress = (address) => {
   }
   return true
 }
+
+const expression = /^(\w{6})\w*(\w{4})$/
+/**
+ * Shortens a hash into something a little more user friendly
+ * @param hash
+ * @returns
+ */
+export const shorten = (hash) => {
+  let result
+
+  if (!hash) {
+    return null
+  }
+
+  result = expression.exec(hash)
+
+  return `${result[1]}...${result[2]}`
+}
