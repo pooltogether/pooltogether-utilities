@@ -2,11 +2,12 @@
 import * as Address from './address'
 import * as FormatData from './formatData'
 import * as FormatNumber from './formatNumber'
-import * as Time from './time'
 import * as Keys from './keys'
-import * as PTMath from './math'
-import * as YieldSources from './yieldSources'
 import * as Network from './networks'
+import * as PTMath from './math'
+import * as QueryParams from './queryParams'
+import * as Time from './time'
+import * as YieldSources from './yieldSources'
 // Data
 import * as NetworkData from './data/networks'
 import * as YieldSourcesData from './data/knownYieldSources'
@@ -20,6 +21,7 @@ export = {
   ...Keys,
   ...Network,
   ...PTMath,
+  ...QueryParams,
   ...Time,
   ...YieldSources,
   // Data

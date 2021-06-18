@@ -1,5 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { parseUnits, formatUnits } from '@ethersproject/units'
+import { ethers } from 'ethers'
 import { FormatNumberOptions } from './types'
 
 /**
@@ -53,9 +54,17 @@ export function displayPercentage(percentage: string) {
  * example: a BigNumber value of 123456 for WBTC which has 8 decimals of precision
  *          would be formatted as: 0.00123456
  */
-export const numberWithCommas = (amount, options = {}) => {
+export const numberWithCommas = (
+  amount,
+  options: {
+    decimals?: string | number
+    precision?: number
+    currentLang?: string
+    removeTrailingZeros?: boolean
+  } = {}
+) => {
   if (!options.decimals) {
-    options.decimals = DEFAULT_TOKEN_PRECISION
+    options.decimals = 18
   }
 
   if (amount === undefined || amount === null) {
@@ -73,7 +82,14 @@ export const numberWithCommas = (amount, options = {}) => {
   return _formatCommas(amountFormatted, options)
 }
 
-function _formatCommas(str, options = {}) {
+function _formatCommas(
+  str,
+  options: {
+    precision?: number
+    currentLang?: string
+    removeTrailingZeros?: boolean
+  } = {}
+) {
   if (!str) {
     return typeof str === 'number' ? str : ''
   }

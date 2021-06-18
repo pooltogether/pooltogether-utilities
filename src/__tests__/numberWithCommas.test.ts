@@ -1,6 +1,6 @@
 import { ethers } from 'ethers'
 
-import { getMinPrecision, numberWithCommas } from '../numberWithCommas'
+import { getMinPrecision, numberWithCommas } from '../formatNumber'
 
 const bn = ethers.BigNumber.from
 

@@ -1,4 +1,4 @@
-import { shorten } from '../shorten'
+import { shorten } from '../address'
 
 describe('shorten', () => {
   it('should work', () => {

@@ -1,5 +1,3 @@
-import { YIELD_SOURCE_NAMES } from '../data/knownYieldSources'
-import { getKnownYieldSourceContract } from '../yieldSources'
 import {
   getChainIdByAlias,
   getNetworkNameAliasByChainId,

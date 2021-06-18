@@ -38,3 +38,13 @@ export const shorten = (hash) => {
 
   return `${result[1]}...${result[2]}`
 }
+
+/**
+ * Returns the string used for urls
+ * @param {string} tokenSymbol string
+ * @param {string} address string
+ * @returns
+ */
+export const getPrizePoolSymbol = (tokenSymbol, address) => {
+  return `${tokenSymbol.toUpperCase()}-${address.slice(0, 8)}`
+}
