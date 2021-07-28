@@ -98,8 +98,8 @@ export const getAllErc20AddressesFromPools = (pools) => {
 export const addTokenTotalUsdValue = (token, tokenPriceData) => {
   const priceData = tokenPriceData[token.address]
   if (priceData) {
-    token.usd = tokenPriceData[token.address].usd || 0
-    token.derivedETH = tokenPriceData[token.address].derivedETH || '0'
+    token.usd = priceData.usd || 0
+    token.derivedETH = priceData.derivedETH || '0'
     if (token.amountUnformatted) {
       const usdValueUnformatted = amountMultByUsd(token.amountUnformatted, token.usd)
       token.totalValueUsd = formatUnits(usdValueUnformatted, token.decimals)

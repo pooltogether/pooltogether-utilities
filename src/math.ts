@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { ethers } from 'ethers'
+import { constants, ethers } from 'ethers'
 import { SECONDS_PER_YEAR } from '@pooltogether/current-pool-data'
 import { parseUnits, formatUnits } from '@ethersproject/units'
 
@@ -149,4 +149,66 @@ export const calculateLPTokenPrice = (
   ])
   const normalizedTotalSupply = parseUnits(totalSupplyOfLPTokens, 18)
   return normalizedTotalValue.div(normalizedTotalSupply)
+}
+
+/**
+ * Calculate Cream borrow APY with values from crToken & interest rate model contracts
+ * @param baseUnformatted
+ * @param multiplierUnformatted
+ * @param utilizationRateUnformatted
+ * @param kink1Unformatted
+ * @param kink2Unformatted
+ * @param jumpMultiplierUnformatted
+ * @param blocksPerYearBN
+ * @returns
+ */
+export const calculateCreamBorrowApy = (
+  baseUnformatted: BigNumber,
+  multiplierUnformatted: BigNumber,
+  utilizationRateUnformatted: BigNumber,
+  kink1Unformatted: BigNumber,
+  kink2Unformatted: BigNumber,
+  jumpMultiplierUnformatted: BigNumber,
+  blocksPerYearBN: BigNumber
+) => {
+  const base = Number(formatUnits(baseUnformatted, 18))
+  const multiplier = Number(formatUnits(multiplierUnformatted, 18))
+  const utilizationRate = Number(formatUnits(utilizationRateUnformatted, 18))
+  const kink1 = Number(formatUnits(kink1Unformatted, 18))
+  const kink2 = Number(formatUnits(kink2Unformatted, 18))
+  const jumpMultiplier = Number(formatUnits(jumpMultiplierUnformatted, 18))
+  const blocksPerYear = blocksPerYearBN.toNumber()
+
+  return (
+    (1 +
+      base +
+      multiplier * Math.min(utilizationRate, kink1) +
+      Math.max(jumpMultiplier * utilizationRate - kink2, 0)) **
+      blocksPerYear -
+    1
+  )
+}
+
+/**
+ * Calculate Cream supply APY with values from crToken & interest rate model contracts
+ * @param borrowApy
+ * @param reserveFactorUnformatted
+ * @param utilizationRateUnformatted
+ * @param blocksPerYearBN
+ * @returns
+ */
+export const calculateCreamSupplyApy = (
+  borrowApy: number,
+  reserveFactorUnformatted: BigNumber,
+  utilizationRateUnformatted: BigNumber,
+  blocksPerYearBN: BigNumber
+) => {
+  const reserveFactor = Number(formatUnits(reserveFactorUnformatted, 18))
+  const utilizationRate = Number(formatUnits(utilizationRateUnformatted, 18))
+  const blocksPerYear = blocksPerYearBN.toNumber()
+  return (
+    (1 + ((1 + borrowApy) ** (1 / blocksPerYear) - 1) * (1 - reserveFactor) * utilizationRate) **
+      blocksPerYear -
+    1
+  )
 }
