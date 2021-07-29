@@ -97,25 +97,25 @@ export const subtractDates = (dateA, dateB) => {
 
   let days = 0
   if (diff >= 86400000) {
-    days = parseInt(diff / 86400000, 10)
+    days = diff / 86400000
     diff -= days * 86400000
   }
 
   let hours = 0
   if (days || diff >= 3600000) {
-    hours = parseInt(diff / 3600000, 10)
+    hours = diff / 3600000
     diff -= hours * 3600000
   }
 
   let minutes = 0
   if (hours || diff >= 60000) {
-    minutes = parseInt(diff / 60000, 10)
+    minutes = diff / 60000
     diff -= minutes * 60000
   }
 
   let seconds = 0
   if (minutes || diff >= 1000) {
-    seconds = parseInt(diff / 1000, 10)
+    seconds = diff / 1000
   }
 
   return {
@@ -125,3 +125,21 @@ export const subtractDates = (dateA, dateB) => {
     seconds
   }
 }
+
+/**
+ * Converts milliseconds to seconds using bigNum math
+ * @param ms Number Milliseconds to convert
+ * @returns Number Seconds converted from milliseconds
+ */
+export function msToSeconds(ms) {
+  if (!ms) {
+    return 0
+  }
+  return ethers.BigNumber.from(ms).div(1000).toNumber()
+}
+
+/**
+ * Return seconds since Epoch as a number
+ * @returns Number Seconds since the Unix Epoch
+ */
+export const getSecondsSinceEpoch = () => Number((Date.now() / 1000).toFixed(0))
