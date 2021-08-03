@@ -460,8 +460,8 @@ export const YIELD_SOURCE_OPTIONS = {
     ],
     56: [
       {
-        value: '0x1ffe17b99b439be0afc831239ddecda2a790ff3a',
-        label: '$BNB - CREAM Yield',
+        value: '0x15cc701370cb8ada2a2b6f4226ec5cf6aa93bc67',
+        label: '$WBNB - CREAM Yield',
         image: '/tokens/bnb-small.svg'
       },
       {
