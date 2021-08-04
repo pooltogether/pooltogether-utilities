@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber'
-import { constants, ethers } from 'ethers'
+import { ethers } from 'ethers'
 import { SECONDS_PER_YEAR } from '@pooltogether/current-pool-data'
 import { parseUnits, formatUnits } from '@ethersproject/units'
 

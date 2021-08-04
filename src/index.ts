@@ -4,6 +4,7 @@ import * as FormatData from './formatData'
 import * as FormatNumber from './formatNumber'
 import * as Keys from './keys'
 import * as Network from './networks'
+import * as PoolToast from './poolToast'
 import * as PTMath from './math'
 import * as QueryParams from './queryParams'
 import * as Time from './time'
@@ -21,6 +22,7 @@ export = {
   ...FormatNumber,
   ...Keys,
   ...Network,
+  ...PoolToast,
   ...PTMath,
   ...QueryParams,
   ...Time,
