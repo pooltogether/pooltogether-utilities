@@ -7,6 +7,7 @@ import * as Network from './networks'
 import * as PTMath from './math'
 import * as QueryParams from './queryParams'
 import * as Time from './time'
+import * as Tokens from './tokens'
 import * as YieldSources from './yieldSources'
 
 // Data
@@ -24,6 +25,7 @@ export = {
   ...PTMath,
   ...QueryParams,
   ...Time,
+  ...Tokens,
   ...YieldSources,
   // Data
   ...NetworkData,
