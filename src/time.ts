@@ -82,3 +82,64 @@ export const sToMs = (seconds: number) => {
   }
   return seconds * 1000
 }
+
+/**
+ * Finds the difference between two date objects
+ * @param dateA DateTime JS object (ie. new Date(Date.now()))
+ * @param dateB DateTime JS object (ie. new Date(Date.now()))
+ * @returns Object with difference split into keys with days, hours, minutes, and seconds
+ */
+export const subtractDates = (dateA, dateB) => {
+  let msA = dateA.getTime()
+  let msB = dateB.getTime()
+
+  let diff = msA - msB
+
+  let days = 0
+  if (diff >= 86400000) {
+    days = diff / 86400000
+    diff -= days * 86400000
+  }
+
+  let hours = 0
+  if (days || diff >= 3600000) {
+    hours = diff / 3600000
+    diff -= hours * 3600000
+  }
+
+  let minutes = 0
+  if (hours || diff >= 60000) {
+    minutes = diff / 60000
+    diff -= minutes * 60000
+  }
+
+  let seconds = 0
+  if (minutes || diff >= 1000) {
+    seconds = diff / 1000
+  }
+
+  return {
+    days,
+    hours,
+    minutes,
+    seconds
+  }
+}
+
+/**
+ * Converts milliseconds to seconds using bigNum math
+ * @param ms Number Milliseconds to convert
+ * @returns Number Seconds converted from milliseconds
+ */
+export function msToSeconds(ms) {
+  if (!ms) {
+    return 0
+  }
+  return ethers.BigNumber.from(ms).div(1000).toNumber()
+}
+
+/**
+ * Return seconds since Epoch as a number
+ * @returns Number Seconds since the Unix Epoch
+ */
+export const getSecondsSinceEpoch = () => Number((Date.now() / 1000).toFixed(0))
