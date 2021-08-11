@@ -593,11 +593,6 @@ export const YIELD_SOURCE_OPTIONS = {
         value: '0x9B53e7D5e3F6Cc8694840eD6C9f7fee79e7Bcee5',
         label: '$SUSHI - CREAM Yield',
         image: '/tokens/sushi-small.png'
-      },
-      {
-        value: '0x15CC701370cb8ADA2a2B6f4226eC5CF6AA93bC67',
-        label: '$WBNB - CREAM Yield',
-        image: '/tokens/bnb-small.svg'
       }
     ]
   }
