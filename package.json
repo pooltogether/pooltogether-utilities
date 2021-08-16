@@ -11,21 +11,26 @@
     "dist"
   ],
   "scripts": {
-    "start": "tsc-watch --onSuccess \"node ./dist/index.js\" ",
-    "build": "tsc",
-    "reinstall": "rm -rf node_modules/ && yarn install",
-    "prepublish": "tsc",
+    "start": "rm -rf dist && tsc-watch --onSuccess \"yalc push\"",
+    "build": "rm -rf dist && tsc",
+    "reinstall": "rm -rf node_modules/ && rm -rf dist/ && yarn install",
+    "prepublish": "yarn build",
     "test": "jest",
     "testcov": "jest --coverage --coverageDirectory=coverage && open ./coverage/index.html",
     "watch": "yarn run test --watch"
   },
-  "dependencies": {
+  "dependencies": {},
+  "peerDependencies": {
     "@pooltogether/current-pool-data": "^3.4.3",
     "ethers": "^5.3.0",
     "lodash.clonedeep": "^4.5.0",
     "query-string": "^7.0.0"
   },
   "devDependencies": {
+    "@pooltogether/current-pool-data": "^3.4.3",
+    "ethers": "^5.3.0",
+    "lodash.clonedeep": "^4.5.0",
+    "query-string": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
     "@types/jest": "^26.0.23",
