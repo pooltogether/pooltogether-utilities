@@ -45,6 +45,20 @@ export function displayPercentage(percentage: string) {
 }
 
 /**
+ * Convert a string and decimals/unit to a BigNumber using a guarded try/catch
+ * @param {String} valueString string number represtation to format
+ * @param {Number|String} decimalsOrUnitName number of decimal places in parent ERC20 contract or ETH unit name
+ * @returns {BigNumber|undefined} The parsed BigNumber or undefined if failed to parse
+ */
+export const safeParseUnits = (valueString, decimalsOrUnitName) => {
+  try {
+    return parseUnits(valueString, decimalsOrUnitName)
+  } catch (e) {
+    console.warn('could not run parseUnits on values:', valueString, decimalsOrUnitName)
+  }
+}
+
+/**
  * Pretty up a BigNumber using it's corresponding ERC20 decimals value with the proper amount of
  * trailing decimal precision
  * @param {BigNumber|String|Number} amount number to format
