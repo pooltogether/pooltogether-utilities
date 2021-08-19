@@ -50,3 +50,16 @@ export const getNetworkNiceNameByChainId = (chainId: number): string => {
     }
   }
 }
+
+/**
+ * Returns the alias with any special cases for renamed networks, etc
+ * @param {Number} chainId
+ * @returns {String} network name alias
+ */
+export const chainIdToNetworkName = (chainId) => {
+  if (chainId === 137) {
+    return 'polygon'
+  }
+
+  return getNetworkNameAliasByChainId(chainId)
+}
