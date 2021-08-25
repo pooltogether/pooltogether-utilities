@@ -41,6 +41,9 @@ export const getNetworkNiceNameByChainId = (chainId: number): string => {
     case NETWORK.bsc: {
       return 'Binance Smart Chain'
     }
+    case NETWORK.celo: {
+      return 'Celo'
+    }
     case NETWORK.xdai: {
       return 'xDai'
     }
