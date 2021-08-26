@@ -16,6 +16,7 @@ export const NETWORK = Object.freeze({
   'polygon': 137,
   'matic': 137,
   'celo': 42220,
+  'celo-testnet': 44787,
   'mumbai': 80001
 })
 
