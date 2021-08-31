@@ -41,6 +41,9 @@ export const getNetworkNiceNameByChainId = (chainId: number): string => {
     case NETWORK.bsc: {
       return 'Binance Smart Chain'
     }
+    case NETWORK.celo: {
+      return 'Celo'
+    }
     case NETWORK.xdai: {
       return 'xDai'
     }
@@ -49,4 +52,17 @@ export const getNetworkNiceNameByChainId = (chainId: number): string => {
       return niceName ? niceName.charAt(0).toUpperCase() + niceName.slice(1) : '--'
     }
   }
+}
+
+/**
+ * Returns the alias with any special cases for renamed networks, etc
+ * @param {Number} chainId
+ * @returns {String} network name alias
+ */
+export const chainIdToNetworkName = (chainId) => {
+  if (chainId === 137) {
+    return 'polygon'
+  }
+
+  return getNetworkNameAliasByChainId(chainId)
 }

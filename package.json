@@ -1,6 +1,6 @@
 {
   "name": "@pooltogether/utilities",
-  "version": "0.0.37",
+  "version": "0.0.42",
   "description": "Shared utility functions across PoolTogether apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,16 +23,20 @@
   "peerDependencies": {
     "@pooltogether/current-pool-data": "^3.4.3",
     "ethers": "^5.3.0",
+    "graphql-request": "^3.5.0",
+    "graphql-tag": "^2.12.5",
     "lodash.clonedeep": "^4.5.0",
     "query-string": "^7.0.0"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
-    "@pooltogether/current-pool-data": "^3.4.3",
+    "@pooltogether/current-pool-data": "^3.6.0",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.0.2",
     "ethers": "^5.3.0",
+    "graphql-request": "^3.5.0",
+    "graphql-tag": "^2.12.5",
     "jest": "^26.6.3",
     "lodash.clonedeep": "^4.5.0",
     "query-string": "^7.0.0",
