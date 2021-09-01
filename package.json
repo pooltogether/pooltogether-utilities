@@ -1,6 +1,6 @@
 {
   "name": "@pooltogether/utilities",
-  "version": "0.0.43",
+  "version": "0.1.0",
   "description": "Shared utility functions across PoolTogether apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,9 @@
     "start": "rm -rf dist && tsc-watch --onSuccess \"yalc push\"",
     "build": "rm -rf dist && tsc",
     "reinstall": "rm -rf node_modules/ && rm -rf dist/ && yarn install",
-    "prepublish": "yarn build",
+    "prepublishOnly": "yarn build",
+    "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags && yarn gitwarn",
+    "gitwarn": "echo '*******************' && echo 'Please push your changes to Git' && echo '*******************'",
     "test": "jest",
     "testcov": "jest --coverage --coverageDirectory=coverage && open ./coverage/index.html",
     "watch": "yarn run test --watch"
