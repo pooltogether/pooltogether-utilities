@@ -4,6 +4,7 @@ import * as FormatData from './formatData'
 import * as FormatNumber from './formatNumber'
 import * as Keys from './keys'
 import * as Network from './networks'
+import * as Pods from './pods'
 import * as PoolData from './poolDataUtils'
 import * as PTMath from './math'
 import * as QueryParams from './queryParams'
@@ -27,6 +28,7 @@ export = {
   ...FormatNumber,
   ...Keys,
   ...Network,
+  ...Pods,
   ...PoolData,
   ...PTMath,
   ...QueryParams,
