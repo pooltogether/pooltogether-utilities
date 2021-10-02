@@ -1,5 +1,9 @@
 import { ethers } from 'ethers'
 
+export interface ShortenOptions {
+  short?: boolean
+}
+
 /**
  * isValidAddress tests an address to see if it's a valid ETH address, but doesn't
  * care if it's checksummed or not
@@ -27,7 +31,7 @@ const expression = /^(\w{6})\w*(\w{4})$/
  * @param hash
  * @returns
  */
-export const shorten = (hash) => {
+export const shorten = (hash, options: ShortenOptions) => {
   let result
 
   if (!hash) {
@@ -36,7 +40,7 @@ export const shorten = (hash) => {
 
   result = expression.exec(hash)
 
-  return `${result[1]}...${result[2]}`
+  return options.short ? `${result[1]}...` : `${result[1]}...${result[2]}`
 }
 
 /**
