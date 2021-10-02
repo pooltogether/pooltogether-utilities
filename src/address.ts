@@ -1,6 +1,7 @@
 import { ethers } from 'ethers'
 
-export interface ShortenOptions {
+export interface ShortenParams {
+  hash: string
   short?: boolean
 }
 
@@ -31,16 +32,16 @@ const expression = /^(\w{6})\w*(\w{4})$/
  * @param hash
  * @returns
  */
-export const shorten = (hash, options: ShortenOptions) => {
+export const shorten = (params: ShortenParams) => {
   let result
 
-  if (!hash) {
+  if (!params.hash) {
     return null
   }
 
-  result = expression.exec(hash)
+  result = expression.exec(params.hash)
 
-  return options.short ? `${result[1]}...` : `${result[1]}...${result[2]}`
+  return params.short ? `${result[1]}...` : `${result[1]}...${result[2]}`
 }
 
 /**
