@@ -11,6 +11,7 @@ import * as QueryParams from './queryParams'
 import * as Subgraph from './subgraph'
 import * as Time from './time'
 import * as Tokens from './tokens'
+import * as Odds from './odds'
 import * as YieldSources from './yieldSources'
 
 // Queries
@@ -24,6 +25,7 @@ import * as YieldSourcesData from './data/knownYieldSources'
 export = {
   // Functions
   ...Address,
+  ...Odds,
   ...FormatData,
   ...FormatNumber,
   ...Keys,
