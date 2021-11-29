@@ -1,10 +1,5 @@
-import {
-  SECONDS_PER_YEAR,
-  SECONDS_PER_WEEK,
-  SECONDS_PER_DAY,
-  SECONDS_PER_HOUR
-} from '@pooltogether/current-pool-data'
 import { BigNumber, ethers } from 'ethers'
+import { SECONDS_PER_DAY, SECONDS_PER_HOUR, SECONDS_PER_WEEK, SECONDS_PER_YEAR } from './constants'
 
 /**
  * Breaks down a number of seconds into years, weeks, days, hours, minutes, seconds
@@ -152,7 +147,9 @@ export function msToSeconds(ms) {
   if (!ms) {
     return 0
   }
-  return ethers.BigNumber.from(ms).div(1000).toNumber()
+  return ethers.BigNumber.from(ms)
+    .div(1000)
+    .toNumber()
 }
 
 /**

@@ -55,6 +55,7 @@ export const safeParseUnits = (valueString, decimalsOrUnitName) => {
     return parseUnits(valueString, decimalsOrUnitName)
   } catch (e) {
     console.warn('could not run parseUnits on values:', valueString, decimalsOrUnitName)
+    return undefined
   }
 }
 
@@ -82,7 +83,7 @@ export const numberWithCommas = (
   }
 
   if (amount === undefined || amount === null) {
-    return
+    return undefined
   }
 
   const amountFormatted = amount._isBigNumber

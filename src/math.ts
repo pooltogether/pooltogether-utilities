@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { ethers } from 'ethers'
-import { SECONDS_PER_YEAR } from '@pooltogether/current-pool-data'
 import { parseUnits, formatUnits } from '@ethersproject/units'
+import { SECONDS_PER_YEAR } from './constants'
 
 /**
  * Need to mult & div by 100 since BigNumber doesn't support decimals
@@ -126,7 +126,13 @@ export const calculatedEstimatedAccruedCompTotalValueUsdScaled = (
  */
 export const calculateAPR = (totalDailyValue: BigNumber, totalValue: BigNumber) => {
   if (totalValue.isZero() || totalDailyValue.isZero()) return '0'
-  return formatUnits(totalDailyValue.mul(10000).mul(365).div(totalValue), 2)
+  return formatUnits(
+    totalDailyValue
+      .mul(10000)
+      .mul(365)
+      .div(totalValue),
+    2
+  )
 }
 
 /**

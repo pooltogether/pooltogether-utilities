@@ -1,6 +1,6 @@
 # PoolTogether utilities
 
-A collection of various utility functions used across the PoolTogether applications/
+A collection of various utility functions used across the PoolTogether applications.
 
 ## NOTE
 
@@ -26,4 +26,4 @@ When you save changes inside the utilities `src` folder, the package will rebuil
 
 ## TODO:
 
-- jest tests
+- moooooore tests
