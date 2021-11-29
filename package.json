@@ -1,6 +1,6 @@
 {
   "name": "@pooltogether/utilities",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Shared utility functions across PoolTogether apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
