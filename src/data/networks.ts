@@ -33,8 +33,6 @@ export const ETHEREUM_NETWORKS = Object.freeze([
   NETWORK.goerli,
   NETWORK.kovan
 ])
-
-/**
- * Polygon networks
- */
 export const POLYGON_NETWORKS = Object.freeze([NETWORK.polygon, NETWORK.mumbai])
+export const AVALANCHE_NETWORKS = Object.freeze([NETWORK.avalanche, NETWORK.fuji])
+export const CELO_NETWORKS = Object.freeze([NETWORK.celo, NETWORK['celo-testnet']])
