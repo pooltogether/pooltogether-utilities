@@ -26,7 +26,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@pooltogether/evm-chains-extended": "^0.6.1",
+    "@pooltogether/evm-chains-extended": "^0.6.2",
     "ethers": "^5.4.6"
   },
   "devDependencies": {
