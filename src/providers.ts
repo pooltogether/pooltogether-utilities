@@ -80,7 +80,6 @@ export const initProviderApiKeys = (apiKeys: ApiKeys) => {
  */
 export const getReadProvider = (chainId: number): Provider => {
   const chainData = getChain(chainId)
-  console.log('chainData', chainData)
   let provider: Provider
   try {
     if (API_KEYS.alchemy && ALCHEMY_CHAIN_IDS.includes(chainId)) {
