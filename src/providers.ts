@@ -98,3 +98,20 @@ export const getReadProvider = (chainId: number): Provider => {
   }
   return provider
 }
+
+/**
+ * Creates several providers for the given chain ids if available.
+ * Attempts to use any initialized api keys for RPC providers first.
+ * @param chainIds
+ * @returns an object of providers keyed by chain id
+ */
+export const getReadProviders = (chainIds: number[]): { [chainId: number]: Provider } => {
+  const readProviders: { [chainId: number]: Provider } = {}
+  chainIds.forEach((chainId) => {
+    const provider = getReadProvider(chainId)
+    if (provider) {
+      readProviders[chainId] = provider
+    }
+  })
+  return readProviders
+}
