@@ -188,3 +188,11 @@ export const getMinPrecision = (num, options = { additionalDigits: 2 }) => {
   if (!decimals) return additionalDigits
   return decimals.match(/^0*/)[0].length + additionalDigits
 }
+
+/**
+ * Returns a human readable version of a BigNumber w/ decimals
+ * @param BigNumber amount
+ * @param string decimals
+ */
+export const prettyNumber = (amount: BigNumber, decimals: string): string =>
+  numberWithCommas(amount, { decimals }) as string
