@@ -17,6 +17,9 @@ export const shorten = (params: ShortenParams) => {
   }
 
   result = expression.exec(params.hash)
+  if (!result) {
+    return null
+  }
 
   return params.short ? `${result[1]}...` : `${result[1]}...${result[2]}`
 }
