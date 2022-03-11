@@ -1,5 +1,12 @@
 import { BigNumber, ethers } from 'ethers'
-import { SECONDS_PER_DAY, SECONDS_PER_HOUR, SECONDS_PER_WEEK, SECONDS_PER_YEAR } from './constants'
+import {
+  MINUTES_PER_DAY,
+  SECONDS_PER_DAY,
+  SECONDS_PER_HOUR,
+  SECONDS_PER_MINUTE,
+  SECONDS_PER_WEEK,
+  SECONDS_PER_YEAR
+} from './constants'
 
 /**
  * Breaks down a number of seconds into years, weeks, days, hours, minutes, seconds
@@ -93,6 +100,78 @@ export const sToMs = (seconds: number) => {
     return 0
   }
   return seconds * 1000
+}
+
+/**
+ * Converts days to milliseconds
+ * @param days days as a number
+ * @returns
+ */
+export const dToMs = (days: number) => {
+  if (!days) {
+    return 0
+  }
+  return days * SECONDS_PER_DAY * 1000
+}
+
+/**
+ * Converts milliseconds to days
+ * @param days days as a number
+ * @returns
+ */
+export const msToD = (ms: number) => {
+  if (!ms) {
+    return 0
+  }
+  return ms / 1000 / SECONDS_PER_DAY
+}
+
+/**
+ * Converts days to seconds
+ * @param days days as a number
+ * @returns
+ */
+export const dToS = (days: number) => {
+  if (!days) {
+    return 0
+  }
+  return days * SECONDS_PER_DAY
+}
+
+/**
+ * Converts seconds to days
+ * @param s seconds as a number
+ * @returns
+ */
+export const sToD = (s: number) => {
+  if (!s) {
+    return 0
+  }
+  return s / SECONDS_PER_DAY
+}
+
+/**
+ * Converts seconds to minutes
+ * @param s seconds as a number
+ * @returns
+ */
+export const sToM = (s: number) => {
+  if (!s) {
+    return 0
+  }
+  return s / SECONDS_PER_MINUTE
+}
+
+/**
+ * Converts days to minutes
+ * @param days days as a number
+ * @returns
+ */
+export const dToM = (days: number) => {
+  if (!days) {
+    return 0
+  }
+  return days * MINUTES_PER_DAY
 }
 
 /**

@@ -5,7 +5,9 @@ import {
   JsonRpcProvider,
   Provider
 } from '@ethersproject/providers'
+import { getNetwork } from '@ethersproject/networks'
 import { getChain } from '@pooltogether/evm-chains-extended'
+import { NETWORK } from './data/networks'
 
 const ALCHEMY_CHAIN_IDS = Object.freeze([
   // Ethereum
@@ -114,4 +116,56 @@ export const getReadProviders = (chainIds: number[]): { [chainId: number]: Provi
     }
   })
   return readProviders
+}
+
+/**
+ * Returns an RPC URL using configured API keys if possible.
+ * @param chainId
+ */
+export const getRpcUrl = (chainId: number, apiKeys?: ApiKeys): string => {
+  const alchemyApiKey = API_KEYS.alchemy || apiKeys?.alchemy
+  const infuraApiKey = API_KEYS.infura || apiKeys?.infura
+
+  try {
+    if (!!alchemyApiKey && ALCHEMY_CHAIN_IDS.includes(chainId)) {
+      const connectionInfo = AlchemyProvider.getUrl(getNetwork(chainId), alchemyApiKey)
+      return connectionInfo.url
+    } else if (!!infuraApiKey && INFURA_CHAIN_IDS.includes(chainId)) {
+      const connectionInfo = InfuraProvider.getUrl(
+        getNetwork(chainId),
+        typeof infuraApiKey === 'string' ? { projectId: infuraApiKey } : infuraApiKey
+      )
+      return connectionInfo.url
+    }
+
+    const chainData = getChain(chainId)
+    const rpcUrl = chainData?.rpc?.[0]
+
+    if (!!rpcUrl) {
+      return rpcUrl
+    } else {
+      console.warn(`getRpcUrl | Chain id ${chainId} not supported.`)
+      const chainData = getChain(NETWORK.mainnet)
+      return chainData.rpc[0]
+    }
+  } catch (e) {
+    console.error(e)
+    const chainData = getChain(NETWORK.mainnet)
+    return chainData.rpc[0]
+  }
+}
+
+/**
+ * Returns multiple RPC URLS using configured API keys if possible.
+ * @param chainIds
+ * @returns
+ */
+export const getRpcUrls = (
+  chainIds: number[],
+  apiKeys?: ApiKeys
+): { [chainId: number]: string } => {
+  return chainIds.reduce((rpcUrls, chainId) => {
+    rpcUrls[chainId] = getRpcUrl(chainId, apiKeys)
+    return rpcUrls
+  }, {})
 }
