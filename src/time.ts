@@ -4,12 +4,11 @@ import {
   SECONDS_PER_DAY,
   SECONDS_PER_HOUR,
   SECONDS_PER_MINUTE,
-  SECONDS_PER_WEEK,
   SECONDS_PER_YEAR
 } from './constants'
 
 /**
- * Breaks down a number of seconds into years, weeks, days, hours, minutes, seconds
+ * Breaks down a number of seconds into years, months, days, hours, minutes, seconds
  * @param totalSeconds
  * @returns
  */
@@ -20,12 +19,6 @@ export const getTimeBreakdown = (totalSeconds: number | string) => {
   if (diff >= SECONDS_PER_YEAR) {
     years = Math.floor(diff / SECONDS_PER_YEAR)
     diff -= years * SECONDS_PER_YEAR
-  }
-
-  let weeks = 0
-  if (diff >= SECONDS_PER_WEEK) {
-    weeks = Math.floor(diff / SECONDS_PER_WEEK)
-    diff -= weeks * SECONDS_PER_WEEK
   }
 
   let days = 0
@@ -53,7 +46,6 @@ export const getTimeBreakdown = (totalSeconds: number | string) => {
 
   return {
     years,
-    weeks,
     days,
     hours,
     minutes,

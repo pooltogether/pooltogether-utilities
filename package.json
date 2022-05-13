@@ -1,6 +1,6 @@
 {
   "name": "@pooltogether/utilities",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "Shared utility functions across PoolTogether apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,9 +8,7 @@
   "author": "PoolTogether Inc.",
   "license": "MIT",
   "module": "dist/utilities.esm.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "engines": {
     "node": ">=10"
   },
