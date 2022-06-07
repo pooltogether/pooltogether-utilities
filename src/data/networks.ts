@@ -16,6 +16,7 @@ export const NETWORK = Object.freeze({
   'polygon': 137,
   'matic': 137,
   'optimism': 420,
+  'optimism-kovan': 69,
   'avalanche': 43114,
   'fuji': 43113,
   'celo': 42220,
@@ -36,3 +37,4 @@ export const ETHEREUM_NETWORKS = Object.freeze([
 export const POLYGON_NETWORKS = Object.freeze([NETWORK.polygon, NETWORK.mumbai])
 export const AVALANCHE_NETWORKS = Object.freeze([NETWORK.avalanche, NETWORK.fuji])
 export const CELO_NETWORKS = Object.freeze([NETWORK.celo, NETWORK['celo-testnet']])
+export const OPTIMISM_NETWORKS = Object.freeze([NETWORK.optimism, NETWORK['optimism-kovan']])
