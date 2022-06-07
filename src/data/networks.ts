@@ -15,7 +15,7 @@ export const NETWORK = Object.freeze({
   'xdai': 100,
   'polygon': 137,
   'matic': 137,
-  'optimism': 420,
+  'optimism': 10,
   'optimism-kovan': 69,
   'avalanche': 43114,
   'fuji': 43113,
