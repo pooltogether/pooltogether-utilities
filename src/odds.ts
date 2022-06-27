@@ -30,3 +30,17 @@ export const calculateOdds = (
   const totalSupplyFloat = Number(ethers.utils.formatUnits(totalSupply, decimals))
   return 1 - Math.pow((totalSupplyFloat - usersBalanceFloat) / totalSupplyFloat, numberOfPrizes)
 }
+
+/**
+ * Compute the union of several probability distributions
+ * p(a | b) = p(a) + p(b) - p(a & b)
+ * @param args ex. 0.2, 1, 0.5, 0.33
+ * @returns
+ */
+export const unionProbabilities = (...args: number[]) => {
+  let returnValue = args[0]
+  for (let i = 1; i < args.length; i++) {
+    returnValue = returnValue + args[i] - returnValue * args[i]
+  }
+  return returnValue
+}

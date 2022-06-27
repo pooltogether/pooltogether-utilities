@@ -118,24 +118,6 @@ export const calculatedEstimatedAccruedCompTotalValueUsdScaled = (
 }
 
 /**
- * Calculates the APR of provided values
- * Make sure the BigNumbers are formatted with the same decimals
- * @param totalDailyValue
- * @param totalValue
- * @returns
- */
-export const calculateAPR = (totalDailyValue: BigNumber, totalValue: BigNumber) => {
-  if (totalValue.isZero() || totalDailyValue.isZero()) return '0'
-  return formatUnits(
-    totalDailyValue
-      .mul(10000)
-      .mul(365)
-      .div(totalValue),
-    2
-  )
-}
-
-/**
  * Calculates the value of an LP token for the 2 provided tokens
  * Make sure the BigNumbers are formatted with the same decimals
  * @param totalValueOfLPPool
@@ -217,4 +199,49 @@ export const calculateCreamSupplyApy = (
       blocksPerYear -
     1
   )
+}
+
+/**
+ * Assumes the BigNumbers are the same decimals
+ * @param totalSupplyAmountUnformatted
+ * @param dailyPrizeAmountUnformatted
+ * @param precision padding for percentage calculation
+ * @returns
+ */
+export const calculateApr = (
+  totalSupplyAmountUnformatted: BigNumber,
+  dailyPrizeAmountUnformatted: BigNumber,
+  precision: number = 4
+) => {
+  if (totalSupplyAmountUnformatted.isZero() || dailyPrizeAmountUnformatted.isZero()) {
+    return 0
+  }
+  const totalYearlyPrizesUnformatted = dailyPrizeAmountUnformatted.mul(365)
+  return (
+    divideBigNumbers(totalYearlyPrizesUnformatted, totalSupplyAmountUnformatted, precision) * 100
+  )
+}
+
+/**
+ * Pads two BigNumbers with a set precision then divides to determine the percentage
+ * @returns
+ */
+export const divideBigNumbers = (a: BigNumber, b: BigNumber, precision: number = 4) => {
+  if (a.isZero() || b.isZero()) return 0
+  return Number(formatUnits(a.mul(10 ** precision).div(b), String(precision)))
+}
+
+/**
+ *
+ * @param bn BigNumber
+ * @param percentage ex. 0.2
+ * @param precision ex. 0.2
+ * @returns
+ */
+export const calculatePercentageOfBigNumber = (
+  bn: BigNumber,
+  percentage: number,
+  precision: number = 4
+) => {
+  return bn.mul(percentage * 10 ** precision).div(10 ** precision)
 }
