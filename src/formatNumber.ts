@@ -89,6 +89,7 @@ export const numberWithCommas = (
   const amountFormatted = amount._isBigNumber
     ? ethers.utils.formatUnits(amount, options.decimals)
     : amount
+  
 
   if (!options.precision && options.precision !== 0 && amountFormatted) {
     options.precision = getPrecision(amountFormatted)
@@ -122,6 +123,12 @@ function _formatCommas(
   // auto-round to the nearest whole number
   if (precision === 0) {
     str = Math.floor(Number(str))
+  }
+
+  if (precision === 2) {
+    // Properly round
+    // https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
+    str = Math.round((parseFloat(str) + Number.EPSILON) * 100) / 100
   }
 
   // handle exponents
