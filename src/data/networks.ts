@@ -23,16 +23,13 @@ export const NETWORK = Object.freeze({
   'celo': 42220,
   'celo-testnet': 44787,
   'arbitrum': 42161,
-  'arbitrum-goerli': 421613,
+  'arbitrum-goerli': 421613
 })
 
 /**
  * Ethereum networks
  */
-export const ETHEREUM_NETWORKS = Object.freeze([
-  NETWORK.mainnet,
-  NETWORK.goerli,
-])
+export const ETHEREUM_NETWORKS = Object.freeze([NETWORK.mainnet, NETWORK.goerli])
 export const POLYGON_NETWORKS = Object.freeze([NETWORK.polygon, NETWORK.mumbai])
 export const AVALANCHE_NETWORKS = Object.freeze([NETWORK.avalanche, NETWORK.fuji])
 export const CELO_NETWORKS = Object.freeze([NETWORK.celo, NETWORK['celo-testnet']])
