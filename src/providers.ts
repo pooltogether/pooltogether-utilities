@@ -21,10 +21,10 @@ const ALCHEMY_CHAIN_IDS = Object.freeze([
   80001,
   // Optimism
   10,
-  69,
+  420,
   // Arbitrum
   42161,
-  421611
+  421613
 ])
 const ETHERSCAN_CHAIN_IDS = Object.freeze([
   // Ethereum
@@ -40,16 +40,15 @@ const INFURA_CHAIN_IDS = Object.freeze([
   3,
   4,
   5,
-  42,
   // Polygon
   137,
   80001,
   // Optimism
   10,
-  69,
+  420,
   // Arbitrum
   42161,
-  421611
+  421613
 ])
 
 export interface ApiKeys {

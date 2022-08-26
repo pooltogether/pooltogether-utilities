@@ -1,6 +1,6 @@
 {
   "name": "@pooltogether/utilities",
-  "version": "0.5.1",
+  "version": "0.5.2-beta.2",
   "description": "Shared utility functions across PoolTogether apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "start": "tsdx watch --onSuccess \"yalc push\"",
@@ -20,17 +20,18 @@
     "reinstall": "rm -rf node_modules && yarn install",
     "test": "tsdx test",
     "lint": "tsdx lint",
+    "lint:fix": "tsdx lint --fix",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
   "dependencies": {},
   "peerDependencies": {
-    "@pooltogether/evm-chains-extended": "^0.7.0",
+    "@pooltogether/evm-chains-extended": "0.7.2-beta.4",
     "ethers": "^5.4.6"
   },
   "devDependencies": {
-    "@pooltogether/evm-chains-extended": "^0.7.0",
+    "@pooltogether/evm-chains-extended": "0.7.2-beta.4",
     "@size-limit/preset-small-lib": "^7.0.3",
     "@types/node": "^15.0.2",
     "ethers": "^5.4.6",
@@ -59,11 +60,11 @@
   "size-limit": [
     {
       "path": "dist/utilities.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "111 KB"
     },
     {
       "path": "dist/utilities.esm.js",
-      "limit": "10 KB"
+      "limit": "72 KB"
     }
   ]
 }

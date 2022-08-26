@@ -89,7 +89,6 @@ export const numberWithCommas = (
   const amountFormatted = amount._isBigNumber
     ? ethers.utils.formatUnits(amount, options.decimals)
     : amount
-  
 
   if (!options.precision && options.precision !== 0 && amountFormatted) {
     options.precision = getPrecision(amountFormatted)

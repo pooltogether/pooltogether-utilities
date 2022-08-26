@@ -1470,10 +1470,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@pooltogether/evm-chains-extended@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@pooltogether/evm-chains-extended/-/evm-chains-extended-0.7.0.tgz#c802ab29e7bc68bde4a9059e1c2565734105de72"
-  integrity sha512-sfq/u3bNUJFsDrroZuUMY6Mtdiaotpw4Lj9e0zscfdu6yksVfQu0lZmItSE4oYs1oRyUyanGBDKJ0D/2DAABxw==
+"@pooltogether/evm-chains-extended@0.7.2-beta.4":
+  version "0.7.2-beta.4"
+  resolved "https://registry.yarnpkg.com/@pooltogether/evm-chains-extended/-/evm-chains-extended-0.7.2-beta.4.tgz#3f7e8e3c7636364f095130eb459bfc84d90f3c09"
+  integrity sha512-N49xdd9Jrixjvq1LsU5CVUiBNWxRX5q/0jLwYIXumy2ppXe8LreKLSJm6X6jrElSlPXTVgmlEOPTk6sV783Xig==
   dependencies:
     evm-chains "^0.2.0"
 

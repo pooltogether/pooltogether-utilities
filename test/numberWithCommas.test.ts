@@ -19,7 +19,7 @@ describe('numberWithCommas', () => {
   it('should show two decimal points by default', () => {
     expect(numberWithCommas('1937.123432')).toEqual('1,937.12')
   })
-  
+
   it('should round properly with default config options', () => {
     expect(numberWithCommas('814.999757')).toEqual('815.00')
   })
