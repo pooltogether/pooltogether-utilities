@@ -1,6 +1,6 @@
 {
   "name": "@pooltogether/utilities",
-  "version": "0.5.2-beta.2",
+  "version": "0.5.3",
   "description": "Shared utility functions across PoolTogether apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -27,11 +27,9 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@pooltogether/evm-chains-extended": "0.7.2-beta.4",
     "ethers": "^5.4.6"
   },
   "devDependencies": {
-    "@pooltogether/evm-chains-extended": "0.7.2-beta.4",
     "@size-limit/preset-small-lib": "^7.0.3",
     "@types/node": "^15.0.2",
     "ethers": "^5.4.6",
@@ -43,7 +41,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint"
+      "pre-commit": "tsdx lint:fix"
     }
   },
   "prettier": {
