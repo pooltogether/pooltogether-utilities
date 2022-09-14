@@ -1,4 +1,4 @@
-import { NETWORK } from './data/networks'
+import { NETWORK } from '../data/networks'
 
 /**
  * Returns the chain id that maps to a provided network alias

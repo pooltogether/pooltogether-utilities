@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { parseUnits, formatUnits } from '@ethersproject/units'
 import { ethers } from 'ethers'
-import { FormatNumberOptions } from './types'
+import { FormatNumberOptions } from '../types'
 
 /**
  * Slices a number string to the requested precision
@@ -105,10 +105,6 @@ function _formatCommas(
     removeTrailingZeros?: boolean
   } = {}
 ) {
-  if (!str) {
-    return typeof str === 'number' ? str : ''
-  }
-
   let precision = 2
   if (options.precision !== undefined) {
     precision = options.precision

@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { ethers } from 'ethers'
 import { parseUnits, formatUnits } from '@ethersproject/units'
-import { SECONDS_PER_YEAR } from './constants'
+import { SECONDS_PER_YEAR } from '../data/time'
 
 /**
  * Need to mult & div by 100 since BigNumber doesn't support decimals

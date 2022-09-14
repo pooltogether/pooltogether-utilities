@@ -35,18 +35,3 @@ export const AVALANCHE_NETWORKS = Object.freeze([NETWORK.avalanche, NETWORK.fuji
 export const CELO_NETWORKS = Object.freeze([NETWORK.celo, NETWORK['celo-testnet']])
 export const OPTIMISM_NETWORKS = Object.freeze([NETWORK.optimism, NETWORK['optimism-goerli']])
 export const ARBITRUM_NETWORKS = Object.freeze([NETWORK.arbitrum, NETWORK['arbitrum-goerli']])
-
-export const PT_RPC_PROXY = Object.freeze({
-  [NETWORK.mainnet]: 'https://ethereum-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [NETWORK.goerli]: 'https://goerli-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [NETWORK.optimism]: 'https://optimism-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [NETWORK['optimism-goerli']]:
-    'https://optimism-goerli-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [NETWORK.arbitrum]: 'https://arbitrum-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [NETWORK['arbitrum-goerli']]:
-    'https://arbitrum-goerli-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [NETWORK.polygon]: 'https://polygon-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [NETWORK.mumbai]: 'https://polygon-mumbai-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [NETWORK.fuji]: 'https://avalanche-fuji-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [NETWORK.avalanche]: 'https://avalanche-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/'
-})

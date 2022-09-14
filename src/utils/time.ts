@@ -5,7 +5,7 @@ import {
   SECONDS_PER_HOUR,
   SECONDS_PER_MINUTE,
   SECONDS_PER_YEAR
-} from './constants'
+} from '../data/time'
 
 /**
  * Breaks down a number of seconds into years, months, days, hours, minutes, seconds
