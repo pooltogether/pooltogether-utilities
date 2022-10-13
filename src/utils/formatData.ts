@@ -51,3 +51,7 @@ export const addTokenTotalUsdValue = (token, tokenPriceData) => {
     token.derivedETH = '0'
   }
 }
+
+export function dedupeArray<T>(arr: T[]) {
+  return Array.from(new Set<T>(arr))
+}

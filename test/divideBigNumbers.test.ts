@@ -1,5 +1,5 @@
 import { BigNumber, ethers } from 'ethers'
-import { divideBigNumbers } from '../src/math'
+import { divideBigNumbers } from '../src/utils/math'
 
 describe('divideBigNumbers', () => {
   it('Handles 0 cases gracefully', () => {

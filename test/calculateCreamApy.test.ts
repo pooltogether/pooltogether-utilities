@@ -1,5 +1,5 @@
 import { BigNumber } from 'ethers'
-import { calculateCreamBorrowApy, calculateCreamSupplyApy } from '../src/math'
+import { calculateCreamBorrowApy, calculateCreamSupplyApy } from '../src/utils/math'
 
 describe('happy path - borrow', () => {
   it('Calculates borrow apy correctly', () => {

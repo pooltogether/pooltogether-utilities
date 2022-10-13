@@ -2,7 +2,7 @@ import {
   getChainIdByAlias,
   getNetworkNameAliasByChainId,
   getNetworkNiceNameByChainId
-} from '../src/networks'
+} from '../src/utils/networks'
 
 describe('getChainIdByAlias', () => {
   it('returns a known chain id', () => {

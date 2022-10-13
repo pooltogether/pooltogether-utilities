@@ -1,5 +1,5 @@
 import { BigNumber, ethers } from 'ethers'
-import { calculateApr } from '../src/math'
+import { calculateApr } from '../src/utils/math'
 
 describe('calculateApr', () => {
   it('Handles 0 cases gracefully', () => {

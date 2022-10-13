@@ -60,6 +60,175 @@ export const safeParseUnits = (valueString, decimalsOrUnitName) => {
 }
 
 /**
+ * Formats a number to make it legible
+ * @param _amount
+ * @param options
+ * @returns
+ */
+export const formatNumberForDisplay = (
+  _amount: BigNumber | string | number,
+  options: Intl.NumberFormatOptions & {
+    locale?: string
+    round?: boolean
+  } = { locale: 'en' }
+) => {
+  const { locale, round, ...formatOptions } = options
+  let amount: number
+
+  if (typeof _amount === 'number') {
+    amount = _amount
+  } else if (typeof _amount === 'string') {
+    amount = Number(_amount)
+  } else if (!!_amount._isBigNumber) {
+    amount = _amount.toNumber()
+  }
+
+  if (!!round) {
+    amount = Math.round(amount)
+  }
+
+  return amount.toLocaleString(locale || 'en', {
+    ...formatOptions
+  })
+}
+
+/**
+ * Wraps formatNumberForDisplay and handles shifting decimals of a BigNumber
+ * @param _amount
+ * @param decimals
+ * @param options
+ * @returns
+ */
+export const formatUnformattedBigNumberForDisplay = (
+  _amount: BigNumber,
+  decimals: string,
+  options: Intl.NumberFormatOptions & {
+    locale?: string
+    round?: boolean
+  } = { locale: 'en' }
+) => formatNumberForDisplay(formatUnits(_amount, decimals), options)
+
+export enum CURRENCIES {
+  USD = 'USD',
+  CAD = 'CAD',
+  EUR = 'EUR'
+}
+
+/**
+ * Wraps formatNumberForDisplay and handles shifting decimals of a BigNumber
+ * @param _amount
+ * @param decimals
+ * @param options
+ * @returns
+ */
+export const formatCurrencyNumberForDisplay = (
+  _amount: string | BigNumber | number,
+  currency: string = 'USD',
+  options: Omit<Intl.NumberFormatOptions, 'style' | 'currency'> & {
+    locale?: string
+    round?: boolean
+  } = { locale: 'en' }
+) => formatNumberForDisplay(_amount, { ...options, style: 'currency', currency })
+
+const EMPTY_AMOUNT = {
+  amount: '',
+  amountUnformatted: undefined,
+  amountPretty: '',
+  decimals: ''
+}
+
+/**
+ * Accepts a number and returns several useful variations of that number
+ * TODO: Remove the empty amount and return null. It's a hacky fallback so you don't need to check if data has been fetched when formatting.
+ * @param amount
+ * @param decimals
+ * @param options
+ * @returns
+ */
+export const getAmount = (
+  _amount: number | string | BigNumber,
+  decimals: string,
+  options: Intl.NumberFormatOptions & {
+    locale?: string
+    round?: boolean
+  } = { locale: 'en' }
+): {
+  amount: string
+  amountUnformatted: BigNumber
+  amountPretty: string
+  decimals: string
+} => {
+  try {
+    if (!_amount || _amount === undefined || !decimals || decimals === undefined) {
+      return EMPTY_AMOUNT
+    }
+
+    if (typeof _amount === 'string') {
+      return {
+        amount: _amount,
+        amountUnformatted: ethers.utils.parseUnits(_amount, decimals),
+        amountPretty: formatNumberForDisplay(_amount, options),
+        decimals
+      }
+    } else if (typeof _amount === 'number') {
+      return {
+        amount: _amount.toString(),
+        amountUnformatted: ethers.utils.parseUnits(_amount.toString(), decimals),
+        amountPretty: formatNumberForDisplay(_amount, options),
+        decimals
+      }
+    } else if (!!_amount._isBigNumber) {
+      return {
+        amountUnformatted: _amount.mul(
+          ethers.BigNumber.from(10).pow(ethers.BigNumber.from(decimals))
+        ),
+        amount: _amount.toString(),
+        amountPretty: formatNumberForDisplay(_amount, options),
+        decimals
+      }
+    } else {
+      return EMPTY_AMOUNT
+    }
+  } catch (e) {
+    console.error(e.message)
+    return EMPTY_AMOUNT
+  }
+}
+
+/**
+ * Accepts a decimal shifted number and returns several useful variations of that number
+ * @param amount
+ * @param decimals
+ * @param options
+ * @returns
+ */
+export const getAmountFromUnformatted = (
+  _unformattedAmount: string | BigNumber,
+  decimals: string,
+  options: Intl.NumberFormatOptions & {
+    locale?: string
+    round?: boolean
+  } = { locale: 'en' }
+): {
+  amount: string
+  amountUnformatted: BigNumber
+  amountPretty: string
+  decimals: string
+} => {
+  if (typeof _unformattedAmount === 'string') {
+    return getAmount(
+      ethers.utils.formatUnits(BigNumber.from(_unformattedAmount), decimals),
+      decimals,
+      options
+    )
+  } else if (!!_unformattedAmount._isBigNumber) {
+    return getAmount(ethers.utils.formatUnits(_unformattedAmount, decimals), decimals, options)
+  } else {
+    return EMPTY_AMOUNT
+  }
+}
+
+/**
  * Pretty up a BigNumber using it's corresponding ERC20 decimals value with the proper amount of
  * trailing decimal precision
  * @param {BigNumber|String|Number} amount number to format

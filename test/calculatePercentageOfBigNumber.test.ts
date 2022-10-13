@@ -1,5 +1,5 @@
 import { BigNumber, ethers } from 'ethers'
-import { calculatePercentageOfBigNumber } from '../src/math'
+import { calculatePercentageOfBigNumber } from '../src/utils/math'
 
 describe('calculatePercentageOfBigNumber', () => {
   it('Handles 0 cases gracefully', () => {

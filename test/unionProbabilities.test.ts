@@ -1,4 +1,4 @@
-import { unionProbabilities } from '../src/odds'
+import { unionProbabilities } from '../src/utils/odds'
 
 describe('unionProbabilities', () => {
   it('Handles 0 cases gracefully', () => {

@@ -1,4 +1,4 @@
-import { getTimeBreakdown } from '../src/time'
+import { getTimeBreakdown } from '../src/utils/time'
 
 describe('time', () => {
   it('works years from now', () => {

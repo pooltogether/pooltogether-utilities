@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { formatUnits, parseUnits } from '@ethersproject/units'
-import { underlyingAmountToSharesAmount, sharesAmountToUnderlyingAmount } from '../src/pods'
+import { underlyingAmountToSharesAmount, sharesAmountToUnderlyingAmount } from '../src/utils/pods'
 
 describe('underlyingAmountToSharesAmount', () => {
   it('1:1', () => {
