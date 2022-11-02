@@ -70,9 +70,10 @@ export const formatNumberForDisplay = (
   options: Intl.NumberFormatOptions & {
     locale?: string
     round?: boolean
+    hideZeroes?: boolean
   } = { locale: 'en' }
 ) => {
-  const { locale, round, ...formatOptions } = options
+  const { locale, hideZeroes, round, ...formatOptions } = options
   let amount: number
 
   if (typeof _amount === 'number') {
@@ -88,7 +89,12 @@ export const formatNumberForDisplay = (
   }
 
   return amount.toLocaleString(locale || 'en', {
-    ...formatOptions
+    ...formatOptions,
+    maximumFractionDigits: !!hideZeroes
+      ? amount <= 1
+        ? formatOptions.maximumFractionDigits
+        : 0
+      : formatOptions.maximumFractionDigits
   })
 }
 
@@ -105,6 +111,7 @@ export const formatUnformattedBigNumberForDisplay = (
   options: Intl.NumberFormatOptions & {
     locale?: string
     round?: boolean
+    hideZeroes?: boolean
   } = { locale: 'en' }
 ) => formatNumberForDisplay(formatUnits(_amount, decimals), options)
 
@@ -127,6 +134,7 @@ export const formatCurrencyNumberForDisplay = (
   options: Omit<Intl.NumberFormatOptions, 'style' | 'currency'> & {
     locale?: string
     round?: boolean
+    hideZeroes?: boolean
   } = { locale: 'en' }
 ) => formatNumberForDisplay(_amount, { ...options, style: 'currency', currency })
 
@@ -151,6 +159,7 @@ export const getAmount = (
   options: Intl.NumberFormatOptions & {
     locale?: string
     round?: boolean
+    hideZeroes?: boolean
   } = { locale: 'en' }
 ): {
   amount: string
@@ -208,6 +217,7 @@ export const getAmountFromUnformatted = (
   options: Intl.NumberFormatOptions & {
     locale?: string
     round?: boolean
+    hideZeroes?: boolean
   } = { locale: 'en' }
 ): {
   amount: string
