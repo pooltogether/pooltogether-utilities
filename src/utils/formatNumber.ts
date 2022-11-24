@@ -76,7 +76,9 @@ export const formatNumberForDisplay = (
   const { locale, hideZeroes, round, ...formatOptions } = options
   let amount: number
 
-  if (typeof _amount === 'number') {
+  if (_amount === undefined || _amount === null) {
+    return ''
+  } else if (typeof _amount === 'number') {
     amount = _amount
   } else if (typeof _amount === 'string') {
     amount = Number(_amount)
@@ -225,7 +227,9 @@ export const getAmountFromUnformatted = (
   amountPretty: string
   decimals: string
 } => {
-  if (typeof _unformattedAmount === 'string') {
+  if (_unformattedAmount === _unformattedAmount || _unformattedAmount === null) {
+    return EMPTY_AMOUNT
+  } else if (typeof _unformattedAmount === 'string') {
     return getAmount(
       ethers.utils.formatUnits(BigNumber.from(_unformattedAmount), decimals),
       decimals,
