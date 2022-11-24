@@ -227,7 +227,7 @@ export const getAmountFromUnformatted = (
   amountPretty: string
   decimals: string
 } => {
-  if (_unformattedAmount === _unformattedAmount || _unformattedAmount === null) {
+  if (_unformattedAmount === undefined || _unformattedAmount === null) {
     return EMPTY_AMOUNT
   } else if (typeof _unformattedAmount === 'string') {
     return getAmount(
