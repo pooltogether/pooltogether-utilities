@@ -96,7 +96,12 @@ export const formatNumberForDisplay = (
       ? amount <= 1
         ? formatOptions.maximumFractionDigits
         : 0
-      : formatOptions.maximumFractionDigits
+      : formatOptions.maximumFractionDigits,
+    minimumFractionDigits: !!hideZeroes
+      ? amount <= 1
+        ? formatOptions.minimumFractionDigits
+        : 0
+      : formatOptions.minimumFractionDigits
   })
 }
 
