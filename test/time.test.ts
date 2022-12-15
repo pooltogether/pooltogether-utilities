@@ -1,5 +1,5 @@
 import { TimeUnit } from '../src/types'
-import { getEstimatedFrequency, getTimeBreakdown } from '../src/utils/time'
+import { formatEstimatedFrequency, getTimeBreakdown } from '../src/utils/time'
 
 describe('time', () => {
   it('works years from now', () => {
@@ -50,18 +50,18 @@ describe('time', () => {
     expect(getTimeBreakdown(44)).toEqual({ days: 0, hours: 0, minutes: 0, seconds: 44, years: 0 })
   })
 
-  it('calculates estimated frequency', () => {
-    expect(getEstimatedFrequency(1)).toEqual({ frequency: 1, unit: TimeUnit.day })
-    expect(getEstimatedFrequency(0.2)).toEqual({ frequency: 5, unit: TimeUnit.day })
-    expect(getEstimatedFrequency(0.05)).toEqual({
+  it('formats estimated frequency', () => {
+    expect(formatEstimatedFrequency(1)).toEqual({ frequency: 1, unit: TimeUnit.day })
+    expect(formatEstimatedFrequency(0.2)).toEqual({ frequency: 5, unit: TimeUnit.day })
+    expect(formatEstimatedFrequency(0.05)).toEqual({
       frequency: 2.857142857142857,
       unit: TimeUnit.week
     })
-    expect(getEstimatedFrequency(0.01)).toEqual({
+    expect(formatEstimatedFrequency(0.01)).toEqual({
       frequency: 3.287671232876712,
       unit: TimeUnit.month
     })
-    expect(getEstimatedFrequency(0.0015)).toEqual({
+    expect(formatEstimatedFrequency(0.0015)).toEqual({
       frequency: 1.82648401826484,
       unit: TimeUnit.year
     })
