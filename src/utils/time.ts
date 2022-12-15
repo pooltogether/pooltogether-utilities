@@ -6,6 +6,7 @@ import {
   SECONDS_PER_MINUTE,
   SECONDS_PER_YEAR
 } from '../data/time'
+import { TimeUnit } from '../types'
 
 /**
  * Breaks down a number of seconds into years, months, days, hours, minutes, seconds
@@ -228,3 +229,40 @@ export function msToSeconds(ms) {
  * @returns Number Seconds since the Unix Epoch
  */
 export const getSecondsSinceEpoch = () => Number((Date.now() / 1000).toFixed(0))
+
+/**
+ * Converts a daily event count into a frequency with the most relevant unit of time.
+ * @param dailyCount Number count of times an event takes place in any given day.
+ * 0 means the event never takes place.
+ * 1 means it happens once a day.
+ * 2 means it happens twice a day, etc.
+ * @returns Object with frequency and unit of time specified.
+ */
+export const formatDailyCountToFrequency = (dailyCount: number) => {
+  const result: { frequency: number; unit: TimeUnit } = {
+    frequency: 0,
+    unit: TimeUnit.day
+  }
+
+  if (dailyCount > 0) {
+    const days = 1 / dailyCount
+    const weeks = days / 7
+    const months = days / (365 / 12)
+    const years = days / 365
+
+    if (weeks < 1.5) {
+      result.frequency = days
+    } else if (months < 1.5) {
+      result.frequency = weeks
+      result.unit = TimeUnit.week
+    } else if (years < 1.5) {
+      result.frequency = months
+      result.unit = TimeUnit.month
+    } else {
+      result.frequency = years
+      result.unit = TimeUnit.year
+    }
+  }
+
+  return result
+}
