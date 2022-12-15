@@ -239,7 +239,10 @@ export const getSecondsSinceEpoch = () => Number((Date.now() / 1000).toFixed(0))
  * @returns Object with estimated frequency and unit of time specified.
  */
 export const getEstimatedFrequency = (probability: number) => {
-  const estimatedFrequency: { frequency: number, unit: TimeUnit } = { frequency: 0, unit: TimeUnit.day }
+  const estimatedFrequency: { frequency: number; unit: TimeUnit } = {
+    frequency: 0,
+    unit: TimeUnit.day
+  }
 
   if (probability > 0) {
     const days = 1 / probability
