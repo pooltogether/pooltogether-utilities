@@ -1,4 +1,4 @@
-import { getTimeBreakdown } from '../src/utils/time'
+import { getEstimatedFrequency, getTimeBreakdown } from '../src/utils/time'
 
 describe('time', () => {
   it('works years from now', () => {
@@ -47,5 +47,15 @@ describe('time', () => {
 
   it('works seconds from now', () => {
     expect(getTimeBreakdown(44)).toEqual({ days: 0, hours: 0, minutes: 0, seconds: 44, years: 0 })
+  })
+
+  it('calculates estimated frequency', () => {
+    expect(getEstimatedFrequency(1)).toEqual('Daily')
+    expect(getEstimatedFrequency(0.2)).toEqual('Every 5 Days')
+    expect(getEstimatedFrequency(0.01)).toEqual('Every 3 Months')
+  })
+
+  it('handles frequency precision', () => {
+    expect(getEstimatedFrequency(0.01, { precision: 2 })).toEqual('Every 3.29 Months')
   })
 })

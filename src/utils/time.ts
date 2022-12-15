@@ -228,3 +228,35 @@ export function msToSeconds(ms) {
  * @returns Number Seconds since the Unix Epoch
  */
 export const getSecondsSinceEpoch = () => Number((Date.now() / 1000).toFixed(0))
+
+/**
+ * Converts a daily probability into an estimated frequency.
+ * @param probability Number probability of an event taking place in a day.
+ * 0 means an event is never possible.
+ * 1 means it happens once a day.
+ * 2 means it happens twice a day, etc.
+ * @param options 
+ * @returns String of frequency expected for event.
+ */
+export const getEstimatedFrequency = (probability: number, options?: { precision?: number }) => {
+  if (probability <= 0) {
+    return 'Never'
+  }
+
+  const days = 1 / probability
+  const weeks = days / 7
+  const months = days / (365 / 12)
+  const years = days / 365
+
+  if (days < 1.5) {
+    return 'Daily'
+  } else if (weeks < 1.5) {
+    return `Every ${days.toFixed(options?.precision ?? 0)} Days`
+  } else if (months < 1.5) {
+    return `Every ${weeks.toFixed(options?.precision ?? 0)} Weeks`
+  } else if (years < 1.5) {
+    return `Every ${months.toFixed(options?.precision ?? 0)} Months`
+  } else {
+    return `Every ${years.toFixed(options?.precision ?? 0)} Years`
+  }
+}
