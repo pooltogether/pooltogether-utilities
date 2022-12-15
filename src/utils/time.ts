@@ -235,7 +235,7 @@ export const getSecondsSinceEpoch = () => Number((Date.now() / 1000).toFixed(0))
  * 0 means an event is never possible.
  * 1 means it happens once a day.
  * 2 means it happens twice a day, etc.
- * @param options 
+ * @param options
  * @returns String of frequency expected for event.
  */
 export const getEstimatedFrequency = (probability: number, options?: { precision?: number }) => {
