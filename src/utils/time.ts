@@ -231,38 +231,38 @@ export function msToSeconds(ms) {
 export const getSecondsSinceEpoch = () => Number((Date.now() / 1000).toFixed(0))
 
 /**
- * Converts a daily probability into an estimated frequency.
- * @param dailyFrequency Number probability of an event taking place in a day.
- * 0 means an event is never possible.
+ * Converts a daily event count into a frequency with the most relevant unit of time.
+ * @param dailyCount Number count of times an event takes place in any given day.
+ * 0 means the event never takes place.
  * 1 means it happens once a day.
  * 2 means it happens twice a day, etc.
- * @returns Object with estimated frequency and unit of time specified.
+ * @returns Object with frequency and unit of time specified.
  */
-export const formatEstimatedFrequency = (dailyFrequency: number) => {
-  const estimatedFrequency: { frequency: number; unit: TimeUnit } = {
+export const formatDailyCountToFrequency = (dailyCount: number) => {
+  const result: { frequency: number; unit: TimeUnit } = {
     frequency: 0,
     unit: TimeUnit.day
   }
 
-  if (dailyFrequency > 0) {
-    const days = 1 / dailyFrequency
+  if (dailyCount > 0) {
+    const days = 1 / dailyCount
     const weeks = days / 7
     const months = days / (365 / 12)
     const years = days / 365
 
     if (weeks < 1.5) {
-      estimatedFrequency.frequency = days
+      result.frequency = days
     } else if (months < 1.5) {
-      estimatedFrequency.frequency = weeks
-      estimatedFrequency.unit = TimeUnit.week
+      result.frequency = weeks
+      result.unit = TimeUnit.week
     } else if (years < 1.5) {
-      estimatedFrequency.frequency = months
-      estimatedFrequency.unit = TimeUnit.month
+      result.frequency = months
+      result.unit = TimeUnit.month
     } else {
-      estimatedFrequency.frequency = years
-      estimatedFrequency.unit = TimeUnit.year
+      result.frequency = years
+      result.unit = TimeUnit.year
     }
   }
 
-  return estimatedFrequency
+  return result
 }
