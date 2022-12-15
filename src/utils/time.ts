@@ -6,6 +6,7 @@ import {
   SECONDS_PER_MINUTE,
   SECONDS_PER_YEAR
 } from '../data/time'
+import { TimeUnit } from '../types'
 
 /**
  * Breaks down a number of seconds into years, months, days, hours, minutes, seconds
@@ -235,28 +236,30 @@ export const getSecondsSinceEpoch = () => Number((Date.now() / 1000).toFixed(0))
  * 0 means an event is never possible.
  * 1 means it happens once a day.
  * 2 means it happens twice a day, etc.
- * @param options
- * @returns String of frequency expected for event.
+ * @returns Object with estimated frequency and unit of time specified.
  */
-export const getEstimatedFrequency = (probability: number, options?: { precision?: number }) => {
-  if (probability <= 0) {
-    return 'Never'
+export const getEstimatedFrequency = (probability: number) => {
+  const estimatedFrequency: { frequency: number, unit: TimeUnit } = { frequency: 0, unit: TimeUnit.day }
+
+  if (probability > 0) {
+    const days = 1 / probability
+    const weeks = days / 7
+    const months = days / (365 / 12)
+    const years = days / 365
+
+    if (weeks < 1.5) {
+      estimatedFrequency.frequency = days
+    } else if (months < 1.5) {
+      estimatedFrequency.frequency = weeks
+      estimatedFrequency.unit = TimeUnit.week
+    } else if (years < 1.5) {
+      estimatedFrequency.frequency = months
+      estimatedFrequency.unit = TimeUnit.month
+    } else {
+      estimatedFrequency.frequency = years
+      estimatedFrequency.unit = TimeUnit.year
+    }
   }
 
-  const days = 1 / probability
-  const weeks = days / 7
-  const months = days / (365 / 12)
-  const years = days / 365
-
-  if (days < 1.5) {
-    return 'Daily'
-  } else if (weeks < 1.5) {
-    return `Every ${days.toFixed(options?.precision ?? 0)} Days`
-  } else if (months < 1.5) {
-    return `Every ${weeks.toFixed(options?.precision ?? 0)} Weeks`
-  } else if (years < 1.5) {
-    return `Every ${months.toFixed(options?.precision ?? 0)} Months`
-  } else {
-    return `Every ${years.toFixed(options?.precision ?? 0)} Years`
-  }
+  return estimatedFrequency
 }
